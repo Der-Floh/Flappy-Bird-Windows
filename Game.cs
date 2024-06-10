@@ -55,6 +55,7 @@ public partial class Game : Form
     {
         if (gameOver)
         {
+            BirdManager.KillBirds();
             PipeSpawnTimer.Enabled = false;
             PipeMoveTimer.Enabled = false;
             BirdManager.ControlsEnabled = false;
@@ -73,7 +74,6 @@ public partial class Game : Form
             var birdRect = new Rectangle(bird.Value.Location.X, bird.Value.Location.Y, bird.Value.Width, bird.Value.Height);
             if (PipeManager.HasCollision(birdRect))
             {
-                //bird.Value.ControlsEnabled = false;
                 bird.Value.KillBird();
             }
             if (PipeManager.HasScoreCollision(birdRect) && _lastScoreCount.AddSeconds(1) < DateTime.Now)
@@ -100,6 +100,8 @@ public partial class Game : Form
             return;
 
         BirdManager.CheckKeyPresses();
+        if (Keyboard.IsKeyDown(Keys.Escape))
+            GameOver = true;
         if (Keyboard.IsKeyDown(Keys.Space) && !BirdManager.Birds.ContainsKey(Color.Yellow))
             BirdManager.NewBird(Color.Yellow);
         if (Keyboard.IsKeyDown(Keys.Up) && !BirdManager.Birds.ContainsKey(Color.Blue))
