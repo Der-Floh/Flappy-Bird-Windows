@@ -38,7 +38,7 @@ public sealed class PipeManager
 
     public void SpawnPipe()
     {
-        var gap = new Random().Next(400, 500);
+        var gap = new Random().Next(Program.GamePlayConfig.PipeGapMin, Program.GamePlayConfig.PipeGapMax);
         var pipeTopHeight = new Random().Next(50, _screenHeight - gap - 100);
         var pipeBottomHeight = _screenHeight - gap - pipeTopHeight;
 

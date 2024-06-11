@@ -65,7 +65,7 @@ namespace Flappy_Bird_Windows.Properties {
         /// </summary>
         internal static System.Drawing.Bitmap bluebird_downflap {
             get {
-                object obj = ResourceManager.GetObject("bluebird-downflap", resourceCulture);
+                object obj = ResourceManager.GetObject("bluebird_downflap", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -75,7 +75,7 @@ namespace Flappy_Bird_Windows.Properties {
         /// </summary>
         internal static System.Drawing.Icon bluebird_icon {
             get {
-                object obj = ResourceManager.GetObject("bluebird-icon", resourceCulture);
+                object obj = ResourceManager.GetObject("bluebird_icon", resourceCulture);
                 return ((System.Drawing.Icon)(obj));
             }
         }
@@ -85,7 +85,7 @@ namespace Flappy_Bird_Windows.Properties {
         /// </summary>
         internal static System.Drawing.Bitmap bluebird_midflap {
             get {
-                object obj = ResourceManager.GetObject("bluebird-midflap", resourceCulture);
+                object obj = ResourceManager.GetObject("bluebird_midflap", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -95,7 +95,7 @@ namespace Flappy_Bird_Windows.Properties {
         /// </summary>
         internal static System.Drawing.Bitmap bluebird_upflap {
             get {
-                object obj = ResourceManager.GetObject("bluebird-upflap", resourceCulture);
+                object obj = ResourceManager.GetObject("bluebird_upflap", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -115,7 +115,7 @@ namespace Flappy_Bird_Windows.Properties {
         /// </summary>
         internal static System.Drawing.Icon icon_pipe_bottom {
             get {
-                object obj = ResourceManager.GetObject("icon-pipe-bottom", resourceCulture);
+                object obj = ResourceManager.GetObject("icon_pipe_bottom", resourceCulture);
                 return ((System.Drawing.Icon)(obj));
             }
         }
@@ -125,7 +125,7 @@ namespace Flappy_Bird_Windows.Properties {
         /// </summary>
         internal static System.Drawing.Icon icon_pipe_top {
             get {
-                object obj = ResourceManager.GetObject("icon-pipe-top", resourceCulture);
+                object obj = ResourceManager.GetObject("icon_pipe_top", resourceCulture);
                 return ((System.Drawing.Icon)(obj));
             }
         }
@@ -135,7 +135,7 @@ namespace Flappy_Bird_Windows.Properties {
         /// </summary>
         internal static System.Drawing.Icon icon_score {
             get {
-                object obj = ResourceManager.GetObject("icon-score", resourceCulture);
+                object obj = ResourceManager.GetObject("icon_score", resourceCulture);
                 return ((System.Drawing.Icon)(obj));
             }
         }
@@ -165,7 +165,7 @@ namespace Flappy_Bird_Windows.Properties {
         /// </summary>
         internal static System.Drawing.Bitmap redbird_downflap {
             get {
-                object obj = ResourceManager.GetObject("redbird-downflap", resourceCulture);
+                object obj = ResourceManager.GetObject("redbird_downflap", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -175,7 +175,7 @@ namespace Flappy_Bird_Windows.Properties {
         /// </summary>
         internal static System.Drawing.Icon redbird_icon {
             get {
-                object obj = ResourceManager.GetObject("redbird-icon", resourceCulture);
+                object obj = ResourceManager.GetObject("redbird_icon", resourceCulture);
                 return ((System.Drawing.Icon)(obj));
             }
         }
@@ -185,7 +185,7 @@ namespace Flappy_Bird_Windows.Properties {
         /// </summary>
         internal static System.Drawing.Bitmap redbird_midflap {
             get {
-                object obj = ResourceManager.GetObject("redbird-midflap", resourceCulture);
+                object obj = ResourceManager.GetObject("redbird_midflap", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -195,7 +195,7 @@ namespace Flappy_Bird_Windows.Properties {
         /// </summary>
         internal static System.Drawing.Bitmap redbird_upflap {
             get {
-                object obj = ResourceManager.GetObject("redbird-upflap", resourceCulture);
+                object obj = ResourceManager.GetObject("redbird_upflap", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -205,7 +205,7 @@ namespace Flappy_Bird_Windows.Properties {
         /// </summary>
         internal static System.Drawing.Bitmap yellowbird_downflap {
             get {
-                object obj = ResourceManager.GetObject("yellowbird-downflap", resourceCulture);
+                object obj = ResourceManager.GetObject("yellowbird_downflap", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -215,7 +215,7 @@ namespace Flappy_Bird_Windows.Properties {
         /// </summary>
         internal static System.Drawing.Icon yellowbird_icon {
             get {
-                object obj = ResourceManager.GetObject("yellowbird-icon", resourceCulture);
+                object obj = ResourceManager.GetObject("yellowbird_icon", resourceCulture);
                 return ((System.Drawing.Icon)(obj));
             }
         }
@@ -225,7 +225,7 @@ namespace Flappy_Bird_Windows.Properties {
         /// </summary>
         internal static System.Drawing.Bitmap yellowbird_midflap {
             get {
-                object obj = ResourceManager.GetObject("yellowbird-midflap", resourceCulture);
+                object obj = ResourceManager.GetObject("yellowbird_midflap", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -235,7 +235,7 @@ namespace Flappy_Bird_Windows.Properties {
         /// </summary>
         internal static System.Drawing.Bitmap yellowbird_upflap {
             get {
-                object obj = ResourceManager.GetObject("yellowbird-upflap", resourceCulture);
+                object obj = ResourceManager.GetObject("yellowbird_upflap", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

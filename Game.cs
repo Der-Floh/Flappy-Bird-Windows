@@ -17,13 +17,13 @@ public partial class Game : Form
         InitializeComponent();
 
         GameOverForm = new GameOver();
-        GameOverForm.FormClosed += (sender, e) => Close();
-        GameOverForm.RestartEvent += GameOverForm_RestartEvent;
+        GameOverForm.FormClosed += (_, _) => Close();
+        GameOverForm.RestartEvent += (_, _) => GameOver = false;
 
         PipeManager = new PipeManager();
 
         BirdManager = new BirdManager();
-        BirdManager.GameOver += BirdManager_GameOver;
+        BirdManager.GameOver += (_, _) => GameOver = true;
 
         ScoreForm = new Score();
         ScoreForm.Show();
@@ -31,10 +31,6 @@ public partial class Game : Form
         Thread.Sleep(500);
         BirdManager.NewBird(Color.Yellow);
     }
-
-    private void GameOverForm_RestartEvent(object? sender, EventArgs e) => GameOver = false;
-
-    private void BirdManager_GameOver(object? sender, EventArgs e) => GameOver = true;
 
     public void Reset()
     {
@@ -91,23 +87,8 @@ public partial class Game : Form
 
     private void GameTimer_Tick(object sender, EventArgs e)
     {
-        if (GameOver)
-            return;
-
-        CheckCollision();
-
-        if (GameOver)
-            return;
-
-        BirdManager.CheckKeyPresses();
-        if (Keyboard.IsKeyDown(Keys.Escape))
-            GameOver = true;
-        if (Keyboard.IsKeyDown(Keys.Space) && !BirdManager.Birds.ContainsKey(Color.Yellow))
-            BirdManager.NewBird(Color.Yellow);
-        if (Keyboard.IsKeyDown(Keys.Up) && !BirdManager.Birds.ContainsKey(Color.Blue))
-            BirdManager.NewBird(Color.Blue);
-        if (Keyboard.IsKeyDown(Keys.NumPad8) && !BirdManager.Birds.ContainsKey(Color.Red))
-            BirdManager.NewBird(Color.Red);
+        if (!GameOver)
+            CheckCollision();
     }
 
     private void PipeMoveTimer_Tick(object sender, EventArgs e)
@@ -118,5 +99,18 @@ public partial class Game : Form
     private void BirdMoveTimer_Tick(object sender, EventArgs e)
     {
         BirdManager.MoveBirds();
+
+        if (!GameOver)
+        {
+            BirdManager.CheckKeyPresses();
+            if (Keyboard.IsKeyDown(Program.ControlsConfig.GameOver))
+                GameOver = true;
+            if (Keyboard.IsKeyDown(Program.ControlsConfig.Player1) && !BirdManager.Birds.ContainsKey(Color.Yellow))
+                BirdManager.NewBird(Color.Yellow);
+            if (Keyboard.IsKeyDown(Program.ControlsConfig.Player2) && !BirdManager.Birds.ContainsKey(Color.Blue))
+                BirdManager.NewBird(Color.Blue);
+            if (Keyboard.IsKeyDown(Program.ControlsConfig.Player3) && !BirdManager.Birds.ContainsKey(Color.Red))
+                BirdManager.NewBird(Color.Red);
+        }
     }
 }

@@ -118,58 +118,58 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="bluebird-downflap" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\sprites\bluebird-downflap.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="bluebird_downflap" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\bluebird-downflap.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="bluebird-icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\sprites\bluebird-icon.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="bluebird_icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\bluebird-icon.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="bluebird-midflap" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\sprites\bluebird-midflap.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="bluebird_midflap" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\bluebird-midflap.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="bluebird-upflap" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\sprites\bluebird-upflap.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="bluebird_upflap" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\bluebird-upflap.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="gameover" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\sprites\gameover.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\Resources\gameover.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="icon-pipe-bottom" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\sprites\icon-pipe-bottom.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="icon_pipe_bottom" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icon-pipe-bottom.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="icon-pipe-top" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\sprites\icon-pipe-top.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="icon_pipe_top" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icon-pipe-top.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="icon-score" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\sprites\icon-score.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="icon_score" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icon-score.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="pipe_green_bottom" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\sprites\pipe-green-bottom.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\Resources\pipe-green-bottom.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="pipe_green_top" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\sprites\pipe-green-top.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\Resources\pipe-green-top.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="redbird-downflap" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\sprites\redbird-downflap.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="redbird_downflap" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\redbird-downflap.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="redbird-icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\sprites\redbird-icon.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="redbird_icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\redbird-icon.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="redbird-midflap" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\sprites\redbird-midflap.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="redbird_midflap" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\redbird-midflap.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="redbird-upflap" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\sprites\redbird-upflap.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="redbird_upflap" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\redbird-upflap.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="yellowbird-downflap" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\sprites\yellowbird-downflap.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="yellowbird_downflap" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\yellowbird-downflap.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="yellowbird-icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\sprites\yellowbird-icon.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="yellowbird_icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\yellowbird-icon.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="yellowbird-midflap" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\sprites\yellowbird-midflap.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="yellowbird_midflap" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\yellowbird-midflap.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="yellowbird-upflap" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\sprites\yellowbird-upflap.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="yellowbird_upflap" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\yellowbird-upflap.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

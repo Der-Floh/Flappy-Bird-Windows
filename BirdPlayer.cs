@@ -13,10 +13,10 @@ public sealed class BirdPlayer
 
     public BirdPlayer(Color playerColor)
     {
-        _upFlapFileName = playerColor.Name.ToLower() + "bird-upflap";
-        _midFlapFileName = playerColor.Name.ToLower() + "bird-midflap";
-        _downFlapFileName = playerColor.Name.ToLower() + "bird-downflap";
-        _iconFileName = playerColor.Name.ToLower() + "bird-icon";
+        _upFlapFileName = playerColor.Name.ToLower() + "bird_upflap";
+        _midFlapFileName = playerColor.Name.ToLower() + "bird_midflap";
+        _downFlapFileName = playerColor.Name.ToLower() + "bird_downflap";
+        _iconFileName = playerColor.Name.ToLower() + "bird_icon";
         UpFlapImage = Properties.Resources.ResourceManager.GetObject(_upFlapFileName) as Bitmap;
         MidFlapImage = Properties.Resources.ResourceManager.GetObject(_midFlapFileName) as Bitmap;
         DownFlapImage = Properties.Resources.ResourceManager.GetObject(_downFlapFileName) as Bitmap;

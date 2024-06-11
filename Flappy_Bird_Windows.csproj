@@ -6,7 +6,18 @@
     <Nullable>enable</Nullable>
     <UseWindowsForms>true</UseWindowsForms>
     <ImplicitUsings>enable</ImplicitUsings>
+    <ApplicationIcon>Resources\yellowbird-icon.ico</ApplicationIcon>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Content Include="Resources\yellowbird-icon.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.Configuration" Version="9.0.0-preview.4.24266.19" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="9.0.0-preview.4.24266.19" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Ini" Version="9.0.0-preview.4.24266.19" />
+  </ItemGroup>
 
   <ItemGroup>
     <Compile Update="Properties\Resources.Designer.cs">
@@ -21,6 +32,12 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="config.ini">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>

@@ -8,3 +8,22 @@ Player 3: NumPad 8
 GameOver: Esc
 
 Feel free to drag the windows around. Shrink and grow. It just works.
+
+## Configuration
+There is a config file called `config.ini` in the root folder.
+
+```ini
+[controls]
+player1key=space
+player2key=up
+player3key=numpad8
+gameoverkey=escape
+
+[gameplay]
+birdgravity=1
+birdflappower=30
+birdmaxfallspeed=30
+pipegapmin=400
+pipegapmax=500
+pipemovespeed=5
+```

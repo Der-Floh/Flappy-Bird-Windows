@@ -9,14 +9,11 @@ public partial class Bird : Form
 
     public int Velocity_Y { get; set; }
 
-    private const int Gravity = 1;
-    private const int FlapPower = -30;
-    private const int MaxFallSpeed = 30;
     private const int upwardVelocityDecay = 2;
 
-    private bool SpaceUp = true;
-    private bool UpArrowUp = true;
-    private bool Num8Up = true;
+    private bool Player1Up = true;
+    private bool Player2Up = true;
+    private bool Player3Up = true;
 
     public Bird(Color color)
     {
@@ -37,10 +34,10 @@ public partial class Bird : Form
         if (Velocity_Y < 0)
             Velocity_Y += upwardVelocityDecay;
         else
-            Velocity_Y += Gravity;
+            Velocity_Y += Program.GamePlayConfig.BirdGravity;
 
-        if (Velocity_Y > MaxFallSpeed)
-            Velocity_Y = MaxFallSpeed;
+        if (Velocity_Y > Program.GamePlayConfig.BirdMaxFallSpeed)
+            Velocity_Y = Program.GamePlayConfig.BirdMaxFallSpeed;
 
         Location = new Point(Location.X, Math.Max(Location.Y + Velocity_Y, 0));
 
@@ -50,22 +47,22 @@ public partial class Bird : Form
 
     public void CheckKeyPress()
     {
-        if ((Keyboard.IsKeyDown(Keys.Space) && Color == Color.Yellow && SpaceUp)
-            || (Keyboard.IsKeyDown(Keys.Up) && Color == Color.Blue && UpArrowUp)
-            || (Keyboard.IsKeyDown(Keys.NumPad8) && Color == Color.Red) && Num8Up)
+        if ((Keyboard.IsKeyDown(Program.ControlsConfig.Player1) && Color == Color.Yellow && Player1Up)
+            || (Keyboard.IsKeyDown(Program.ControlsConfig.Player2) && Color == Color.Blue && Player2Up)
+            || (Keyboard.IsKeyDown(Program.ControlsConfig.Player3) && Color == Color.Red) && Player3Up)
         {
             FlapBird();
         }
 
-        SpaceUp = Keyboard.IsKeyUp(Keys.Space);
-        UpArrowUp = Keyboard.IsKeyUp(Keys.Up);
-        Num8Up = Keyboard.IsKeyUp(Keys.NumPad8);
+        Player1Up = Keyboard.IsKeyUp(Program.ControlsConfig.Player1);
+        Player2Up = Keyboard.IsKeyUp(Program.ControlsConfig.Player2);
+        Player3Up = Keyboard.IsKeyUp(Program.ControlsConfig.Player3);
     }
 
     public void FlapBird()
     {
         if (ControlsEnabled)
-            Velocity_Y = FlapPower;
+            Velocity_Y = -Program.GamePlayConfig.BirdFlapPower;
     }
 
     public void KillBird() => Close();
