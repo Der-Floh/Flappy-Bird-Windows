@@ -38,17 +38,17 @@ public sealed class PipeManager
 
     public void SpawnPipe()
     {
-        var gap = new Random().Next(Program.GamePlayConfig.PipeGapMin, Program.GamePlayConfig.PipeGapMax);
+        var gap = new Random().Next(Program.GameplayConfig.PipeGapMin, Program.GameplayConfig.PipeGapMax);
         var pipeTopHeight = new Random().Next(50, _screenHeight - gap - 100);
         var pipeBottomHeight = _screenHeight - gap - pipeTopHeight;
 
         var pipeTopForm = new PipeTop();
         pipeTopForm.Size = new Size(pipeTopForm.Width, pipeTopHeight);
-        pipeTopForm.Location = new Point(_screenWidth - pipeTopForm.Width, 0);
+        pipeTopForm.Location = new Point(_screenWidth - pipeTopForm.Width + Program.GameplayConfig.PipeSpawnOffset, 0);
 
         var pipeBottomForm = new PipeBottom();
         pipeBottomForm.Size = new Size(pipeBottomForm.Width, pipeBottomHeight);
-        pipeBottomForm.Location = new Point(_screenWidth - pipeBottomForm.Width, _screenHeight - pipeBottomHeight);
+        pipeBottomForm.Location = new Point(_screenWidth - pipeBottomForm.Width + Program.GameplayConfig.PipeSpawnOffset, _screenHeight - pipeBottomHeight);
 
         var pipePair = new PipePair(pipeTopForm, pipeBottomForm);
         pipePair.Closed += PipePair_Closed;

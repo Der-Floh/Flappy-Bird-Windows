@@ -4,40 +4,51 @@ public partial class Bird : Form
 {
     public bool ControlsEnabled { get; set; }
     public BirdAnimationState AnimationState { get; set; }
-    public BirdPlayer Player { get; set; }
     public Color Color { get; set; }
 
     public int Velocity_Y { get; set; }
+    public int UpwardVelocityDecay { get; set; } = 2;
 
-    private const int upwardVelocityDecay = 2;
+    private readonly Bitmap? _upFlapImage;
+    private readonly Bitmap? _midFlapImage;
+    private readonly Bitmap? _downFlapImage;
+    private readonly Keys _key = Keys.None;
 
-    private bool Player1Up = true;
-    private bool Player2Up = true;
-    private bool Player3Up = true;
+    private bool _keyUp = true;
+    private int _animationStateIndex;
 
-    public Bird(Color color)
+    public Bird(Color color, Keys key)
     {
         ProcessModelId.SetCurrentProcessExplicitAppUserModelID(Guid.NewGuid().ToString());
 
+        _key = key;
+        Color = color;
+        var upFlapFileName = color.Name.ToLower() + "bird_upflap";
+        var midFlapFileName = color.Name.ToLower() + "bird_midflap";
+        var downFlapFileName = color.Name.ToLower() + "bird_downflap";
+        var iconFileName = color.Name.ToLower() + "bird_icon";
+        _upFlapImage = Properties.Resources.ResourceManager.GetObject(upFlapFileName) as Bitmap;
+        _midFlapImage = Properties.Resources.ResourceManager.GetObject(midFlapFileName) as Bitmap;
+        _downFlapImage = Properties.Resources.ResourceManager.GetObject(downFlapFileName) as Bitmap;
+
         InitializeComponent();
 
-        Color = color;
+        Icon = Properties.Resources.ResourceManager.GetObject(iconFileName) as Icon;
+        BackgroundImage = _upFlapImage;
+
         ControlsEnabled = true;
         Location = new Point(200, 0);
-        Player = new BirdPlayer(color);
-        BackgroundImage = Player.UpFlapImage;
-        Icon = Player.Icon;
     }
 
     public void MoveBird()
     {
         if (Velocity_Y < 0)
-            Velocity_Y += upwardVelocityDecay;
+            Velocity_Y += UpwardVelocityDecay;
         else
-            Velocity_Y += Program.GamePlayConfig.BirdGravity;
+            Velocity_Y += Program.GameplayConfig.BirdGravity;
 
-        if (Velocity_Y > Program.GamePlayConfig.BirdMaxFallSpeed)
-            Velocity_Y = Program.GamePlayConfig.BirdMaxFallSpeed;
+        if (Velocity_Y > Program.GameplayConfig.BirdMaxFallSpeed)
+            Velocity_Y = Program.GameplayConfig.BirdMaxFallSpeed;
 
         Location = new Point(Location.X, Math.Max(Location.Y + Velocity_Y, 0));
 
@@ -47,22 +58,16 @@ public partial class Bird : Form
 
     public void CheckKeyPress()
     {
-        if ((Keyboard.IsKeyDown(Program.ControlsConfig.Player1) && Color == Color.Yellow && Player1Up)
-            || (Keyboard.IsKeyDown(Program.ControlsConfig.Player2) && Color == Color.Blue && Player2Up)
-            || (Keyboard.IsKeyDown(Program.ControlsConfig.Player3) && Color == Color.Red) && Player3Up)
-        {
+        if (Keyboard.IsKeyDown(_key) && _keyUp)
             FlapBird();
-        }
 
-        Player1Up = Keyboard.IsKeyUp(Program.ControlsConfig.Player1);
-        Player2Up = Keyboard.IsKeyUp(Program.ControlsConfig.Player2);
-        Player3Up = Keyboard.IsKeyUp(Program.ControlsConfig.Player3);
+        _keyUp = Keyboard.IsKeyUp(_key);
     }
 
     public void FlapBird()
     {
         if (ControlsEnabled)
-            Velocity_Y = -Program.GamePlayConfig.BirdFlapPower;
+            Velocity_Y = -Program.GameplayConfig.BirdFlapPower;
     }
 
     public void KillBird() => Close();
@@ -72,29 +77,27 @@ public partial class Bird : Form
         switch (AnimationState)
         {
             case BirdAnimationState.UpFlap:
-                BackgroundImage = Player.UpFlapImage;
-                AnimationState = BirdAnimationState.MidFlap;
+                BackgroundImage = _upFlapImage;
                 break;
             case BirdAnimationState.MidFlap:
-                BackgroundImage = Player.MidFlapImage;
-                AnimationState = BirdAnimationState.DownFlap;
+                BackgroundImage = _midFlapImage;
                 break;
             case BirdAnimationState.DownFlap:
-                BackgroundImage = Player.DownFlapImage;
-                AnimationState = BirdAnimationState.UpFlap;
+                BackgroundImage = _downFlapImage;
                 break;
         }
+        _animationStateIndex++;
+        if (_animationStateIndex == Enum.GetNames<BirdAnimationState>().Length)
+            _animationStateIndex = 0;
+        AnimationState = (BirdAnimationState)_animationStateIndex;
     }
 
-    private void Bird_Shown(object sender, EventArgs e)
-    {
-        AnimationTimer.Enabled = true;
-    }
+    private void Bird_Shown(object sender, EventArgs e) => AnimationTimer.Enabled = true;
 }
 
 public enum BirdAnimationState
 {
     UpFlap,
-    DownFlap,
-    MidFlap
+    MidFlap,
+    DownFlap
 }

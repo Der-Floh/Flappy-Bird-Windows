@@ -9,8 +9,8 @@ public partial class PipeTop : Form
 
     public void MovePipe()
     {
-        Location = new Point(Location.X - Program.GamePlayConfig.PipeMoveSpeed, Location.Y);
-        if (Location.X + Width < 0)
+        Location = new Point(Location.X - Program.GameplayConfig.PipeMoveSpeed, Location.Y);
+        if (Location.X + Program.GameplayConfig.PipeDespawnOffset < 0)
             Close();
     }
 }

@@ -10,8 +10,10 @@ public sealed class BirdManager
     public void NewBird(Color color)
     {
         ProcessModelId.SetCurrentProcessExplicitAppUserModelID(Guid.NewGuid().ToString());
-        var bird = new Bird(color);
-        bird.ControlsEnabled = ControlsEnabled;
+        var bird = new Bird(color, GetKeyFromColor(color))
+        {
+            ControlsEnabled = ControlsEnabled
+        };
         bird.FormClosed += Bird_FormClosed;
         Birds[color] = bird;
         bird.Show();
@@ -19,18 +21,26 @@ public sealed class BirdManager
 
     public void MoveBirds()
     {
-        foreach (var bird in Birds)
+        try
         {
-            bird.Value.MoveBird();
+            foreach (var bird in Birds)
+            {
+                bird.Value.MoveBird();
+            }
         }
+        catch { }
     }
 
     public void CheckKeyPresses()
     {
-        foreach (var bird in Birds)
+        try
         {
-            bird.Value.CheckKeyPress();
+            foreach (var bird in Birds)
+            {
+                bird.Value.CheckKeyPress();
+            }
         }
+        catch { }
     }
 
     public void FlapBird(Color color)
@@ -42,13 +52,13 @@ public sealed class BirdManager
 
     public void KillBird(Color color)
     {
-        if (Birds.ContainsKey(color))
-            Birds[color].KillBird();
+        if (Birds.TryGetValue(color, out var value))
+            value.KillBird();
     }
 
     public void KillBirds()
     {
-        foreach (var bird in Birds)
+        foreach (var bird in Birds.ToArray())
         {
             KillBird(bird.Key);
         }
@@ -56,14 +66,25 @@ public sealed class BirdManager
 
     public void EnableControl(Color color)
     {
-        if (Birds.ContainsKey(color))
-            Birds[color].ControlsEnabled = true;
+        if (Birds.TryGetValue(color, out var value))
+            value.ControlsEnabled = true;
     }
 
     public void DisableControl(Color color)
     {
-        if (Birds.ContainsKey(color))
-            Birds[color].ControlsEnabled = false;
+        if (Birds.TryGetValue(color, out var value))
+            value.ControlsEnabled = false;
+    }
+
+    private static Keys GetKeyFromColor(Color color)
+    {
+        if (color == Color.Yellow)
+            return Program.ControlsConfig.Player1;
+        else if (color == Color.Blue)
+            return Program.ControlsConfig.Player2;
+        else if (color == Color.Red)
+            return Program.ControlsConfig.Player3;
+        return Keys.None;
     }
 
     private void SetControlsEnabled(bool enabled)
@@ -76,8 +97,7 @@ public sealed class BirdManager
 
     private void Bird_FormClosed(object? sender, FormClosedEventArgs e)
     {
-        var bird = sender as Bird;
-        if (bird is null)
+        if (sender is not Bird bird)
             return;
 
         Birds.Remove(bird.Color);

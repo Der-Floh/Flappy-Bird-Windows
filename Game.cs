@@ -6,11 +6,9 @@ public partial class Game : Form
     public PipeManager PipeManager { get; set; }
     public BirdManager BirdManager { get; set; }
     public Score ScoreForm { get; set; }
-    public bool GameOver { get => _gameOver; set { _gameOver = value; SetGameOver(value); } }
-    private bool _gameOver;
+    public bool IsGameOver { get; set; }
 
     private DateTime _lastScoreCount = DateTime.MinValue;
-    private DateTime _lastKeyDown = DateTime.MinValue;
 
     public Game()
     {
@@ -18,17 +16,17 @@ public partial class Game : Form
 
         GameOverForm = new GameOver();
         GameOverForm.FormClosed += (_, _) => Close();
-        GameOverForm.RestartEvent += (_, _) => GameOver = false;
+        GameOverForm.RestartEvent += (_, _) => Reset();
 
         PipeManager = new PipeManager();
 
         BirdManager = new BirdManager();
-        BirdManager.GameOver += (_, _) => GameOver = true;
+        BirdManager.GameOver += (_, _) => GameOver();
 
         ScoreForm = new Score();
         ScoreForm.Show();
 
-        Thread.Sleep(500);
+        Thread.Sleep(200);
         BirdManager.NewBird(Color.Yellow);
     }
 
@@ -36,75 +34,75 @@ public partial class Game : Form
     {
         GameOverForm.Hide();
         PipeManager.KillAll();
-        PipeSpawnTimer.Enabled = true;
-        PipeMoveTimer.Enabled = true;
-        BirdManager.ControlsEnabled = true;
+
         ScoreForm.Close();
         ScoreForm = new Score();
         ScoreForm.Show();
 
-        Thread.Sleep(500);
+        Thread.Sleep(200);
+
+        PipeSpawnTimer.Enabled = true;
+        PipeMoveTimer.Enabled = true;
+        BirdMoveTimer.Enabled = true;
+        BirdManager.ControlsEnabled = true;
+
         BirdManager.NewBird(Color.Yellow);
+        IsGameOver = false;
     }
 
-    private void SetGameOver(bool gameOver)
+    private void GameOver()
     {
-        if (gameOver)
-        {
-            BirdManager.KillBirds();
-            PipeSpawnTimer.Enabled = false;
-            PipeMoveTimer.Enabled = false;
-            BirdManager.ControlsEnabled = false;
-            GameOverForm.Show();
-        }
-        else
-        {
+        IsGameOver = true;
+        BirdManager.KillBirds();
+
+        BirdMoveTimer.Enabled = false;
+        PipeSpawnTimer.Enabled = false;
+        PipeMoveTimer.Enabled = false;
+        BirdManager.ControlsEnabled = false;
+        if (Program.GameplayConfig.CloseOnLoose)
+            Close();
+        else if (Program.GameplayConfig.InstantRestart)
             Reset();
-        }
+        else
+            GameOverForm.Show();
     }
 
     public void CheckCollision()
     {
-        foreach (var bird in BirdManager.Birds)
+        try
         {
-            var birdRect = new Rectangle(bird.Value.Location.X, bird.Value.Location.Y, bird.Value.Width, bird.Value.Height);
-            if (PipeManager.HasCollision(birdRect))
+            foreach (var bird in BirdManager.Birds)
             {
-                bird.Value.KillBird();
-            }
-            if (PipeManager.HasScoreCollision(birdRect) && _lastScoreCount.AddSeconds(1) < DateTime.Now)
-            {
-                ScoreForm.AddScore();
-                _lastScoreCount = DateTime.Now;
+                var birdRect = new Rectangle(bird.Value.Location.X, bird.Value.Location.Y, bird.Value.Width, bird.Value.Height);
+                if (PipeManager.HasCollision(birdRect))
+                {
+                    bird.Value.KillBird();
+                }
+                if (PipeManager.HasScoreCollision(birdRect) && _lastScoreCount.AddSeconds(1) < DateTime.Now)
+                {
+                    ScoreForm.AddScore();
+                    _lastScoreCount = DateTime.Now;
+                }
             }
         }
-    }
-
-    private void PipeSpawnTimer_Tick(object sender, EventArgs e)
-    {
-        PipeManager.SpawnPipe();
+        catch { }
     }
 
     private void GameTimer_Tick(object sender, EventArgs e)
     {
-        if (!GameOver)
+        if (!IsGameOver)
             CheckCollision();
-    }
-
-    private void PipeMoveTimer_Tick(object sender, EventArgs e)
-    {
-        PipeManager.MovePipes();
     }
 
     private void BirdMoveTimer_Tick(object sender, EventArgs e)
     {
         BirdManager.MoveBirds();
 
-        if (!GameOver)
+        if (!IsGameOver)
         {
             BirdManager.CheckKeyPresses();
             if (Keyboard.IsKeyDown(Program.ControlsConfig.GameOver))
-                GameOver = true;
+                BirdManager.KillBirds();
             if (Keyboard.IsKeyDown(Program.ControlsConfig.Player1) && !BirdManager.Birds.ContainsKey(Color.Yellow))
                 BirdManager.NewBird(Color.Yellow);
             if (Keyboard.IsKeyDown(Program.ControlsConfig.Player2) && !BirdManager.Birds.ContainsKey(Color.Blue))
@@ -113,4 +111,8 @@ public partial class Game : Form
                 BirdManager.NewBird(Color.Red);
         }
     }
+
+    private void PipeSpawnTimer_Tick(object sender, EventArgs e) => PipeManager.SpawnPipe();
+
+    private void PipeMoveTimer_Tick(object sender, EventArgs e) => PipeManager.MovePipes();
 }
