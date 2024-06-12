@@ -67,6 +67,7 @@ public sealed class PipePair
     private void PipeTop_FormClosed(object? sender, FormClosedEventArgs e)
     {
         PipeTop.FormClosed -= PipeTop_FormClosed;
+        PipeTop.BackgroundImage?.Dispose();
         PipeTop.Dispose();
         CheckAndRaiseClosed();
     }
@@ -74,6 +75,7 @@ public sealed class PipePair
     private void PipeBottom_FormClosed(object? sender, FormClosedEventArgs e)
     {
         PipeBottom.FormClosed -= PipeBottom_FormClosed;
+        PipeBottom.BackgroundImage?.Dispose();
         PipeBottom.Dispose();
         CheckAndRaiseClosed();
     }
