@@ -29,16 +29,10 @@ partial class Game
     private void InitializeComponent()
     {
         components = new System.ComponentModel.Container();
-        GameTimer = new System.Windows.Forms.Timer(components);
         PipeSpawnTimer = new System.Windows.Forms.Timer(components);
         PipeMoveTimer = new System.Windows.Forms.Timer(components);
         BirdMoveTimer = new System.Windows.Forms.Timer(components);
         SuspendLayout();
-        // 
-        // GameTimer
-        // 
-        GameTimer.Enabled = true;
-        GameTimer.Tick += GameTimer_Tick;
         // 
         // PipeSpawnTimer
         // 
@@ -73,8 +67,6 @@ partial class Game
     }
 
     #endregion
-
-    private System.Windows.Forms.Timer GameTimer;
     private System.Windows.Forms.Timer PipeSpawnTimer;
     private System.Windows.Forms.Timer PipeMoveTimer;
     private System.Windows.Forms.Timer BirdMoveTimer;

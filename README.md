@@ -25,9 +25,11 @@ birdflappower=30
 birdmaxfallspeed=30
 pipegapmin=400
 pipegapmax=500
+pipegapshift=100
 pipemovespeed=5
 pipespawnoffset=0
 pipedespawnoffset=0
+pipespawndelay=3000
 instantrestart=false
 closeonloose=false
 ```

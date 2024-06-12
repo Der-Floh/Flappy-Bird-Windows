@@ -14,6 +14,8 @@ public partial class Game : Form
     {
         InitializeComponent();
 
+        PipeSpawnTimer.Interval = Program.GameplayConfig.PipeSpawnDelay;
+
         GameOverForm = new GameOver();
         GameOverForm.FormClosed += (_, _) => Close();
         GameOverForm.RestartEvent += (_, _) => Reset();
@@ -25,6 +27,8 @@ public partial class Game : Form
 
         ScoreForm = new Score();
         ScoreForm.Show();
+
+        Task.Run(CollisionChecker);
 
         Thread.Sleep(200);
         BirdManager.NewBird(Color.Yellow);
@@ -76,11 +80,11 @@ public partial class Game : Form
                 var birdRect = new Rectangle(bird.Value.Location.X, bird.Value.Location.Y, bird.Value.Width, bird.Value.Height);
                 if (PipeManager.HasCollision(birdRect))
                 {
-                    bird.Value.KillBird();
+                    BirdCollided(bird.Value);
                 }
                 if (PipeManager.HasScoreCollision(birdRect) && _lastScoreCount.AddSeconds(1) < DateTime.Now)
                 {
-                    ScoreForm.AddScore();
+                    ScoreCollided(ScoreForm);
                     _lastScoreCount = DateTime.Now;
                 }
             }
@@ -88,10 +92,36 @@ public partial class Game : Form
         catch { }
     }
 
-    private void GameTimer_Tick(object sender, EventArgs e)
+    private static void BirdCollided(Bird bird)
     {
-        if (!IsGameOver)
+        if (bird.InvokeRequired)
+        {
+            bird.BeginInvoke(new Action(() => BirdCollided(bird)));
+            return;
+        }
+        bird.KillBird();
+    }
+
+    private static void ScoreCollided(Score score)
+    {
+        if (score.InvokeRequired)
+        {
+            score.BeginInvoke(new Action(() => ScoreCollided(score)));
+            return;
+        }
+        score.AddScore();
+    }
+
+    private async Task CollisionChecker()
+    {
+        while (true)
+        {
+            if (IsGameOver)
+                continue;
+
             CheckCollision();
+            await Task.Delay(20);
+        }
     }
 
     private void BirdMoveTimer_Tick(object sender, EventArgs e)

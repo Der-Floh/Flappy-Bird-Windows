@@ -1,5 +1,6 @@
 using Flappy_Bird_Windows.Config;
 using Microsoft.Extensions.Configuration;
+using System.Diagnostics;
 
 namespace Flappy_Bird_Windows;
 
@@ -11,6 +12,8 @@ internal static class Program
     [STAThread]
     static void Main()
     {
+        Process.GetCurrentProcess().PriorityClass = ProcessPriorityClass.RealTime;
+
         IConfiguration config = new ConfigurationBuilder().AddIniFile("config.ini").Build();
         config.GetSection(nameof(Controls)).Bind(ControlsConfig);
         config.GetSection(nameof(Gameplay)).Bind(GameplayConfig);

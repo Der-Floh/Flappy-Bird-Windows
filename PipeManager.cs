@@ -5,11 +5,15 @@ public sealed class PipeManager
     public List<PipePair> Pipes { get; } = [];
     private readonly int _screenHeight;
     private readonly int _screenWidth;
+    private readonly Random _random = new Random();
+
+    private int _lastGapY;
 
     public PipeManager()
     {
         _screenHeight = Screen.PrimaryScreen!.Bounds.Height;
         _screenWidth = Screen.PrimaryScreen!.Bounds.Width;
+        _lastGapY = _random.Next(_screenHeight / 3);
     }
 
     public void Show()
@@ -32,15 +36,16 @@ public sealed class PipeManager
     {
         foreach (var pipePair in Pipes.ToArray())
         {
-            pipePair.MovePipes();
+            pipePair.Move();
         }
     }
 
     public void SpawnPipe()
     {
-        var gap = new Random().Next(Program.GameplayConfig.PipeGapMin, Program.GameplayConfig.PipeGapMax);
-        var pipeTopHeight = new Random().Next(50, _screenHeight - gap - 100);
+        var gap = _random.Next(Program.GameplayConfig.PipeGapMin, Program.GameplayConfig.PipeGapMax);
+        var pipeTopHeight = Math.Clamp(_random.Next(_lastGapY - Program.GameplayConfig.PipeGapShift, _lastGapY + Program.GameplayConfig.PipeGapShift), 50, _screenHeight - gap - 100);
         var pipeBottomHeight = _screenHeight - gap - pipeTopHeight;
+        _lastGapY = pipeTopHeight;
 
         var pipeTopForm = new PipeTop();
         pipeTopForm.Size = new Size(pipeTopForm.Width, pipeTopHeight);
@@ -59,14 +64,17 @@ public sealed class PipeManager
     private void PipePair_Closed(object? sender, EventArgs e)
     {
         if (sender is PipePair pipePair)
+        {
+            pipePair.Closed -= PipePair_Closed;
             Pipes.Remove(pipePair);
+        }
     }
 
     public bool HasCollision(Rectangle birdRect)
     {
         foreach (var pipe in Pipes)
         {
-            if (birdRect.IntersectsWith(pipe.PipeTop.Bounds) || birdRect.IntersectsWith(pipe.PipeBottom.Bounds))
+            if (pipe.HasCollision(birdRect))
                 return true;
         }
         return false;
@@ -76,7 +84,7 @@ public sealed class PipeManager
     {
         foreach (var pipe in Pipes)
         {
-            var scoreRect = new Rectangle(pipe.PipeTop.Location.X + pipe.PipeTop.Width, 0, 1, _screenHeight);
+            var scoreRect = new Rectangle(pipe.GetScoreCalcLocationX(), 0, 1, _screenHeight);
             if (birdRect.IntersectsWith(scoreRect))
                 return true;
         }
