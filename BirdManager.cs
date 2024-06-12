@@ -100,6 +100,9 @@ public sealed class BirdManager
         if (sender is not Bird bird)
             return;
 
+        bird.FormClosed -= Bird_FormClosed;
+        bird.DisposeImages();
+        bird.Dispose();
         Birds.Remove(bird.Color);
         if (Birds.Count == 0)
             GameOver?.Invoke(this, EventArgs.Empty);

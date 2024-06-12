@@ -53,7 +53,7 @@ public partial class Bird : Form
         Location = new Point(Location.X, Math.Max(Location.Y + Velocity_Y, 0));
 
         if (Location.Y > Screen.PrimaryScreen!.Bounds.Height)
-            Close();
+            KillBird();
     }
 
     public void CheckKeyPress()
@@ -68,6 +68,14 @@ public partial class Bird : Form
     {
         if (ControlsEnabled)
             Velocity_Y = -Program.GameplayConfig.BirdFlapPower;
+    }
+
+    public void DisposeImages()
+    {
+        BackgroundImage?.Dispose();
+        _upFlapImage?.Dispose();
+        _midFlapImage?.Dispose();
+        _downFlapImage?.Dispose();
     }
 
     public void KillBird() => Close();
