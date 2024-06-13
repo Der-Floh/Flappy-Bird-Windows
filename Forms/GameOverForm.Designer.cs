@@ -44,7 +44,7 @@ sealed partial class GameOverForm
         RestartButton.UseVisualStyleBackColor = true;
         RestartButton.Click += RestartButton_Click;
         // 
-        // GameOver
+        // GameOverForm
         // 
         AcceptButton = RestartButton;
         AutoScaleDimensions = new SizeF(7F, 15F);
@@ -57,9 +57,8 @@ sealed partial class GameOverForm
         Icon = (Icon)resources.GetObject("$this.Icon");
         MaximizeBox = false;
         MinimizeBox = false;
-        Name = "GameOver";
+        Name = "GameOverForm";
         StartPosition = FormStartPosition.CenterScreen;
-        TopMost = true;
         ResumeLayout(false);
     }
 

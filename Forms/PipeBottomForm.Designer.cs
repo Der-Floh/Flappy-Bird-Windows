@@ -31,7 +31,7 @@ sealed partial class PipeBottomForm
         var resources = new System.ComponentModel.ComponentResourceManager(typeof(PipeBottomForm));
         SuspendLayout();
         // 
-        // PipeBottom
+        // PipeBottomForm
         // 
         AutoScaleDimensions = new SizeF(7F, 15F);
         AutoScaleMode = AutoScaleMode.Font;
@@ -42,9 +42,8 @@ sealed partial class PipeBottomForm
         Icon = (Icon)resources.GetObject("$this.Icon");
         MaximizeBox = false;
         MinimizeBox = false;
-        Name = "PipeBottom";
+        Name = "PipeBottomForm";
         StartPosition = FormStartPosition.Manual;
-        TopMost = true;
         ResumeLayout(false);
     }
 

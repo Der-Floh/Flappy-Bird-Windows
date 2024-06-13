@@ -11,6 +11,8 @@ public sealed partial class GameOverForm : Form
         ProcessModelId.SetCurrentProcessExplicitAppUserModelID(Guid.NewGuid().ToString());
 
         InitializeComponent();
+
+        TopMost = Program.GameplayConfig.AlwaysOnTop;
     }
 
     private void RestartButton_Click(object sender, EventArgs e)

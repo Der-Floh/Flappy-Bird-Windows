@@ -43,7 +43,7 @@ sealed partial class ScoreForm
         ScoreLabel.Text = "0";
         ScoreLabel.TextAlign = ContentAlignment.MiddleCenter;
         // 
-        // Score
+        // ScoreForm
         // 
         AutoScaleDimensions = new SizeF(7F, 15F);
         AutoScaleMode = AutoScaleMode.Font;
@@ -52,10 +52,9 @@ sealed partial class ScoreForm
         Icon = (Icon)resources.GetObject("$this.Icon");
         MaximizeBox = false;
         MinimizeBox = false;
-        Name = "Score";
+        Name = "ScoreForm";
         StartPosition = FormStartPosition.Manual;
         Text = "Score";
-        TopMost = true;
         ResumeLayout(false);
     }
 

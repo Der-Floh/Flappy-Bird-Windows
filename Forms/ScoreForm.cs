@@ -11,6 +11,8 @@ public sealed partial class ScoreForm : Form
         ProcessModelId.SetCurrentProcessExplicitAppUserModelID(Guid.NewGuid().ToString());
 
         InitializeComponent();
+
+        TopMost = Program.GameplayConfig.AlwaysOnTop;
     }
 
     public void AddScore()

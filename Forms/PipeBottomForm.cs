@@ -5,6 +5,8 @@ public sealed partial class PipeBottomForm : Form
     public PipeBottomForm()
     {
         InitializeComponent();
+
+        TopMost = Program.GameplayConfig.AlwaysOnTop;
     }
 
     public void MovePipe()

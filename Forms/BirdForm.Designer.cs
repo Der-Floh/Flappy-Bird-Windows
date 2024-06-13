@@ -38,7 +38,7 @@ sealed partial class BirdForm
         AnimationTimer.Interval = 200;
         AnimationTimer.Tick += AnimationTimer_Tick;
         // 
-        // Bird
+        // BirdForm
         // 
         AutoScaleDimensions = new SizeF(7F, 15F);
         AutoScaleMode = AutoScaleMode.Font;
@@ -50,10 +50,9 @@ sealed partial class BirdForm
         KeyPreview = true;
         MaximizeBox = false;
         MinimizeBox = false;
-        Name = "Bird";
+        Name = "BirdForm";
         SizeGripStyle = SizeGripStyle.Hide;
         StartPosition = FormStartPosition.Manual;
-        TopMost = true;
         Shown += Bird_Shown;
         ResumeLayout(false);
     }
