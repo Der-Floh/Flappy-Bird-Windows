@@ -1,6 +1,6 @@
-﻿namespace Flappy_Bird_Windows;
+﻿namespace Flappy_Bird_Windows.Forms;
 
-partial class Score
+sealed partial class ScoreForm
 {
     /// <summary>
     /// Required designer variable.
@@ -28,7 +28,7 @@ partial class Score
     /// </summary>
     private void InitializeComponent()
     {
-        var resources = new System.ComponentModel.ComponentResourceManager(typeof(Score));
+        var resources = new System.ComponentModel.ComponentResourceManager(typeof(ScoreForm));
         ScoreLabel = new Label();
         SuspendLayout();
         // 

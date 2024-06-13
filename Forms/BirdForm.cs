@@ -1,6 +1,8 @@
-namespace Flappy_Bird_Windows;
+using Flappy_Bird_Windows.Helper;
 
-public partial class Bird : Form
+namespace Flappy_Bird_Windows.Forms;
+
+public sealed partial class BirdForm : Form
 {
     public bool ControlsEnabled { get; set; }
     public BirdAnimationState AnimationState { get; set; }
@@ -17,11 +19,11 @@ public partial class Bird : Form
     private bool _keyUp = true;
     private int _animationStateIndex;
 
-    public Bird(Color color, Keys key)
+    public BirdForm(Color color)
     {
         ProcessModelId.SetCurrentProcessExplicitAppUserModelID(Guid.NewGuid().ToString());
 
-        _key = key;
+        _key = GetKeyFromColor(color);
         Color = color;
         var upFlapFileName = color.Name.ToLower() + "bird_upflap";
         var midFlapFileName = color.Name.ToLower() + "bird_midflap";
@@ -79,6 +81,17 @@ public partial class Bird : Form
     }
 
     public void KillBird() => Close();
+
+    private static Keys GetKeyFromColor(Color color)
+    {
+        if (color == Color.Yellow)
+            return Program.ControlsConfig.Player1;
+        else if (color == Color.Blue)
+            return Program.ControlsConfig.Player2;
+        else if (color == Color.Red)
+            return Program.ControlsConfig.Player3;
+        return Keys.None;
+    }
 
     private void AnimationTimer_Tick(object sender, EventArgs e)
     {

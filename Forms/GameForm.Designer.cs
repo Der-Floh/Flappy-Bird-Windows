@@ -1,6 +1,6 @@
-﻿namespace Flappy_Bird_Windows;
+﻿namespace Flappy_Bird_Windows.Forms;
 
-partial class Game
+sealed partial class GameForm
 {
     /// <summary>
     /// Required designer variable.

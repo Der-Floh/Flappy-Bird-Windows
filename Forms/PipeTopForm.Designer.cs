@@ -1,6 +1,6 @@
-﻿namespace Flappy_Bird_Windows;
+﻿namespace Flappy_Bird_Windows.Forms;
 
-partial class GameOver
+sealed partial class PipeTopForm
 {
     /// <summary>
     /// Required designer variable.
@@ -28,42 +28,25 @@ partial class GameOver
     /// </summary>
     private void InitializeComponent()
     {
-        var resources = new System.ComponentModel.ComponentResourceManager(typeof(GameOver));
-        RestartButton = new Button();
+        var resources = new System.ComponentModel.ComponentResourceManager(typeof(PipeTopForm));
         SuspendLayout();
         // 
-        // RestartButton
+        // PipeTop
         // 
-        RestartButton.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-        RestartButton.Cursor = Cursors.Hand;
-        RestartButton.Location = new Point(12, 397);
-        RestartButton.Name = "RestartButton";
-        RestartButton.Size = new Size(776, 41);
-        RestartButton.TabIndex = 0;
-        RestartButton.Text = "Restart";
-        RestartButton.UseVisualStyleBackColor = true;
-        RestartButton.Click += RestartButton_Click;
-        // 
-        // GameOver
-        // 
-        AcceptButton = RestartButton;
         AutoScaleDimensions = new SizeF(7F, 15F);
         AutoScaleMode = AutoScaleMode.Font;
-        BackgroundImage = Properties.Resources.gameover;
-        BackgroundImageLayout = ImageLayout.Zoom;
-        ClientSize = new Size(800, 450);
-        Controls.Add(RestartButton);
+        BackgroundImage = Properties.Resources.pipe_green_top;
+        BackgroundImageLayout = ImageLayout.Stretch;
+        ClientSize = new Size(124, 712);
         DoubleBuffered = true;
         Icon = (Icon)resources.GetObject("$this.Icon");
         MaximizeBox = false;
         MinimizeBox = false;
-        Name = "GameOver";
-        StartPosition = FormStartPosition.CenterScreen;
+        Name = "PipeTop";
+        StartPosition = FormStartPosition.Manual;
         TopMost = true;
         ResumeLayout(false);
     }
 
     #endregion
-
-    private Button RestartButton;
 }

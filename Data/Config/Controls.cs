@@ -1,4 +1,4 @@
-﻿namespace Flappy_Bird_Windows.Config;
+﻿namespace Flappy_Bird_Windows.Data.Config;
 
 public sealed class Controls
 {

@@ -1,8 +1,8 @@
-﻿namespace Flappy_Bird_Windows;
+﻿namespace Flappy_Bird_Windows.Forms;
 
-public partial class PipeBottom : Form
+public sealed partial class PipeTopForm : Form
 {
-    public PipeBottom()
+    public PipeTopForm()
     {
         InitializeComponent();
     }

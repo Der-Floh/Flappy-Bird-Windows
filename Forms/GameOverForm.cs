@@ -1,10 +1,12 @@
-﻿namespace Flappy_Bird_Windows;
+﻿using Flappy_Bird_Windows.Helper;
 
-public partial class GameOver : Form
+namespace Flappy_Bird_Windows.Forms;
+
+public sealed partial class GameOverForm : Form
 {
     public event EventHandler? RestartEvent;
 
-    public GameOver()
+    public GameOverForm()
     {
         ProcessModelId.SetCurrentProcessExplicitAppUserModelID(Guid.NewGuid().ToString());
 

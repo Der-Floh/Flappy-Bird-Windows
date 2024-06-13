@@ -1,4 +1,4 @@
-﻿namespace Flappy_Bird_Windows.Config;
+﻿namespace Flappy_Bird_Windows.Data.Config;
 
 public sealed class Gameplay
 {
@@ -14,4 +14,5 @@ public sealed class Gameplay
     public int PipeSpawnDelay { get; set; } = 3000;
     public bool InstantRestart { get; set; } = false;
     public bool CloseOnLoose { get; set; } = false;
+    public bool AlwaysOnTop { get; set; } = true;
 }

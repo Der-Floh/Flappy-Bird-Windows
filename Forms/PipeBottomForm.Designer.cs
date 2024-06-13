@@ -1,14 +1,14 @@
-﻿namespace Flappy_Bird_Windows;
+﻿namespace Flappy_Bird_Windows.Forms;
 
-partial class Bird
+sealed partial class PipeBottomForm
 {
     /// <summary>
-    ///  Required designer variable.
+    /// Required designer variable.
     /// </summary>
     private System.ComponentModel.IContainer components = null;
 
     /// <summary>
-    ///  Clean up any resources being used.
+    /// Clean up any resources being used.
     /// </summary>
     /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
     protected override void Dispose(bool disposing)
@@ -23,41 +23,30 @@ partial class Bird
     #region Windows Form Designer generated code
 
     /// <summary>
-    ///  Required method for Designer support - do not modify
-    ///  the contents of this method with the code editor.
+    /// Required method for Designer support - do not modify
+    /// the contents of this method with the code editor.
     /// </summary>
     private void InitializeComponent()
     {
-        components = new System.ComponentModel.Container();
-        var resources = new System.ComponentModel.ComponentResourceManager(typeof(Bird));
-        AnimationTimer = new System.Windows.Forms.Timer(components);
+        var resources = new System.ComponentModel.ComponentResourceManager(typeof(PipeBottomForm));
         SuspendLayout();
         // 
-        // AnimationTimer
-        // 
-        AnimationTimer.Interval = 200;
-        AnimationTimer.Tick += AnimationTimer_Tick;
-        // 
-        // Bird
+        // PipeBottom
         // 
         AutoScaleDimensions = new SizeF(7F, 15F);
         AutoScaleMode = AutoScaleMode.Font;
-        BackgroundImage = Properties.Resources.yellowbird_upflap;
-        BackgroundImageLayout = ImageLayout.Zoom;
-        ClientSize = new Size(120, 86);
+        BackgroundImage = Properties.Resources.pipe_green_bottom;
+        BackgroundImageLayout = ImageLayout.Stretch;
+        ClientSize = new Size(124, 712);
         DoubleBuffered = true;
         Icon = (Icon)resources.GetObject("$this.Icon");
-        KeyPreview = true;
         MaximizeBox = false;
         MinimizeBox = false;
-        Name = "Bird";
-        SizeGripStyle = SizeGripStyle.Hide;
+        Name = "PipeBottom";
         StartPosition = FormStartPosition.Manual;
         TopMost = true;
-        Shown += Bird_Shown;
         ResumeLayout(false);
     }
 
     #endregion
-    private System.Windows.Forms.Timer AnimationTimer;
 }

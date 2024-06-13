@@ -1,10 +1,12 @@
-﻿namespace Flappy_Bird_Windows;
+﻿using Flappy_Bird_Windows.Helper;
 
-public partial class Score : Form
+namespace Flappy_Bird_Windows.Forms;
+
+public sealed partial class ScoreForm : Form
 {
     public int ScoreValue { get; set; }
 
-    public Score()
+    public ScoreForm()
     {
         ProcessModelId.SetCurrentProcessExplicitAppUserModelID(Guid.NewGuid().ToString());
 
