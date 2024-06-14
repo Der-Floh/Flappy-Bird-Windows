@@ -35,7 +35,7 @@ sealed partial class PipeTopForm
         // 
         AutoScaleDimensions = new SizeF(7F, 15F);
         AutoScaleMode = AutoScaleMode.Font;
-        BackgroundImage = Properties.Resources.pipe_green_top;
+        BackgroundImage = Properties.Resources.pipe_top;
         BackgroundImageLayout = ImageLayout.Stretch;
         ClientSize = new Size(124, 712);
         DoubleBuffered = true;

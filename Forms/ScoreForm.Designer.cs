@@ -35,10 +35,10 @@ sealed partial class ScoreForm
         // ScoreLabel
         // 
         ScoreLabel.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-        ScoreLabel.Font = new Font("Segoe UI", 16F);
-        ScoreLabel.Location = new Point(12, 9);
+        ScoreLabel.Font = new Font("Segoe UI", 28F);
+        ScoreLabel.Location = new Point(0, 0);
         ScoreLabel.Name = "ScoreLabel";
-        ScoreLabel.Size = new Size(96, 34);
+        ScoreLabel.Size = new Size(122, 53);
         ScoreLabel.TabIndex = 0;
         ScoreLabel.Text = "0";
         ScoreLabel.TextAlign = ContentAlignment.MiddleCenter;

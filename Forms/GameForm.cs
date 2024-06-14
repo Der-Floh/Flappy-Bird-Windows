@@ -12,6 +12,7 @@ public sealed partial class GameForm : Form
     public GameOverForm GameOverForm { get; set; }
     public ScoreForm ScoreForm { get; set; }
     public bool IsGameOver { get; set; }
+    public int BestScore { get; set; }
 
     private readonly IPipeManagerService _pipeManagerService;
     private readonly IPipeRepository _pipeRepository;
@@ -74,12 +75,16 @@ public sealed partial class GameForm : Form
         PipeSpawnTimer.Enabled = false;
         PipeMoveTimer.Enabled = false;
         _birdManagerService.ControlsEnabled = false;
+
         if (Program.GameplayConfig.CloseOnLoose)
             Close();
         else if (Program.GameplayConfig.InstantRestart)
             Reset();
         else
-            GameOverForm.Show();
+            GameOverForm.ShowGameOver(ScoreForm.ScoreValue, BestScore);
+
+        if (ScoreForm.ScoreValue > BestScore)
+            BestScore = ScoreForm.ScoreValue;
     }
 
     public void CheckCollision()

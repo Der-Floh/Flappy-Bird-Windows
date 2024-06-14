@@ -13,6 +13,8 @@ public sealed partial class ScoreForm : Form
         InitializeComponent();
 
         TopMost = Program.GameplayConfig.AlwaysOnTop;
+
+        ScoreLabel.Font = new Font(Program.Fonts.Families[0], ScoreLabel.Font.Size);
     }
 
     public void AddScore()

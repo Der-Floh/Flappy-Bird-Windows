@@ -130,23 +130,35 @@
   <data name="bluebird_upflap" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\bluebird-upflap.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="gameover" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\gameover.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="medal_bronze" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\medal-bronze.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="icon_pipe_bottom" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\icon-pipe-bottom.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="medal_empty" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\medal-empty.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="icon_pipe_top" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\icon-pipe-top.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="medal_gold" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\medal-gold.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="icon_score" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\icon-score.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="medal_icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\medal-icon.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="pipe_green_bottom" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\pipe-green-bottom.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="medal_platinum" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\medal-platinum.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="pipe_green_top" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\pipe-green-top.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="medal_silver" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\medal-silver.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="pipe_bottom" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\pipe-bottom.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="pipe_bottom_icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\pipe-bottom-icon.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="pipe_top" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\pipe-top.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="pipe_top_icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\pipe-top-icon.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="redbird_downflap" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\redbird-downflap.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -159,6 +171,15 @@
   </data>
   <data name="redbird_upflap" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\redbird-upflap.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="score_board" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\score-board.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="text_game_over" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\text-game-over.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="text_new" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\text-new.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="yellowbird_downflap" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\yellowbird-downflap.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
