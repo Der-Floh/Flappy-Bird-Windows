@@ -43,7 +43,7 @@ sealed partial class BirdForm
         AutoScaleDimensions = new SizeF(7F, 15F);
         AutoScaleMode = AutoScaleMode.Font;
         BackgroundImage = Properties.Resources.yellowbird_upflap;
-        BackgroundImageLayout = ImageLayout.Zoom;
+        BackgroundImageLayout = ImageLayout.Stretch;
         ClientSize = new Size(120, 86);
         DoubleBuffered = true;
         Icon = (Icon)resources.GetObject("$this.Icon");

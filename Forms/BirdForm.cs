@@ -44,6 +44,12 @@ public sealed partial class BirdForm : Form
         Location = new Point(200, 0);
     }
 
+    protected override void OnPaintBackground(PaintEventArgs e)
+    {
+        e.Graphics.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.NearestNeighbor;
+        base.OnPaintBackground(e);
+    }
+
     public void MoveBird()
     {
         if (Velocity_Y < 0)
