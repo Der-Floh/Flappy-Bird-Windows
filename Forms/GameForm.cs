@@ -1,8 +1,8 @@
-﻿using Flappy_Bird_Windows.Helper;
-using Flappy_Bird_Windows.Repository.Bird;
+﻿using Flappy_Bird_Windows.Repository.Bird;
 using Flappy_Bird_Windows.Repository.Pipe;
 using Flappy_Bird_Windows.Service.BirdManager;
 using Flappy_Bird_Windows.Service.PipeManager;
+using Flappy_Bird_Windows.Utility;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Flappy_Bird_Windows.Forms;
@@ -10,6 +10,9 @@ namespace Flappy_Bird_Windows.Forms;
 public sealed partial class GameForm : Form
 {
     public GameOverForm GameOverForm { get; set; }
+    public ScoreBoardForm ScoreBoardForm { get; set; }
+    public SingleButtonForm RestartButtonForm { get; set; }
+    public SingleButtonForm CloseButtonForm { get; set; }
     public ScoreForm ScoreForm { get; set; }
     public bool IsGameOver { get; set; }
     public int BestScore { get; set; }
@@ -18,18 +21,32 @@ public sealed partial class GameForm : Form
     private readonly IPipeRepository _pipeRepository;
     private readonly IBirdManagerService _birdManagerService;
     private readonly IBirdRepository _birdRepository;
+    private readonly int _screenWidth;
+    private readonly int _screenHeight;
 
     private DateTime _lastScoreCount = DateTime.MinValue;
 
     public GameForm()
     {
+        _screenWidth = Screen.PrimaryScreen!.Bounds.Width;
+        _screenHeight = Screen.PrimaryScreen!.Bounds.Height;
+
         InitializeComponent();
 
         PipeSpawnTimer.Interval = Program.GameplayConfig.PipeSpawnDelay;
 
         GameOverForm = new GameOverForm();
-        GameOverForm.FormClosed += (_, _) => Close();
-        GameOverForm.RestartEvent += (_, _) => Reset();
+        ScoreBoardForm = new ScoreBoardForm();
+
+        RestartButtonForm = new SingleButtonForm();
+        RestartButtonForm.ButtonPixelBox.Image = Properties.Resources.ResourceManager.GetObject("button_restart") as Bitmap;
+        RestartButtonForm.ButtonPixelBox.Click += (_, _) => Reset();
+        RestartButtonForm.FormClosed += (_, _) => Close();
+
+        CloseButtonForm = new SingleButtonForm();
+        CloseButtonForm.ButtonPixelBox.Image = Properties.Resources.ResourceManager.GetObject("button_close") as Bitmap;
+        CloseButtonForm.ButtonPixelBox.Click += (_, _) => Close();
+        CloseButtonForm.FormClosed += (_, _) => Close();
 
         _pipeRepository = Program.Services!.GetRequiredService<IPipeRepository>();
         _birdRepository = Program.Services!.GetRequiredService<IBirdRepository>();
@@ -42,20 +59,20 @@ public sealed partial class GameForm : Form
 
         Task.Run(CollisionChecker);
 
-        Thread.Sleep(200);
         _birdManagerService.NewBird(Color.Yellow);
     }
 
     public void Reset()
     {
         GameOverForm.Hide();
+        ScoreBoardForm.Hide();
+        RestartButtonForm.Hide();
+        CloseButtonForm.Hide();
         _pipeRepository.KillAll();
 
         ScoreForm.Close();
         ScoreForm = new ScoreForm();
         ScoreForm.Show();
-
-        Thread.Sleep(200);
 
         PipeSpawnTimer.Enabled = true;
         PipeMoveTimer.Enabled = true;
@@ -81,10 +98,27 @@ public sealed partial class GameForm : Form
         else if (Program.GameplayConfig.InstantRestart)
             Reset();
         else
-            GameOverForm.ShowGameOver(ScoreForm.ScoreValue, BestScore);
+            ShowGameOver();
+    }
 
-        if (ScoreForm.ScoreValue > BestScore)
-            BestScore = ScoreForm.ScoreValue;
+    public void ShowGameOver()
+    {
+        ScoreBoardForm.Location = new Point(_screenWidth / 2 - ScoreBoardForm.Width / 2, _screenHeight / 2 - ScoreBoardForm.Height / 2);
+        GameOverForm.Location = new Point(_screenWidth / 2 - GameOverForm.Width / 2, ScoreBoardForm.Location.Y - GameOverForm.Height - 20);
+        RestartButtonForm.Location = new Point(_screenWidth / 2 - RestartButtonForm.Width - 20, ScoreBoardForm.Location.Y + ScoreBoardForm.Height + 20);
+        CloseButtonForm.Location = new Point(_screenWidth / 2 + 20, ScoreBoardForm.Location.Y + ScoreBoardForm.Height + 20);
+
+        ScoreBoardForm.Score = ScoreForm.ScoreValue;
+
+        ScoreForm.Hide();
+
+        ProcessModelId.SetCurrentProcessExplicitAppUserModelID(Guid.NewGuid().ToString());
+        GameOverForm.Show();
+        ScoreBoardForm.Show();
+        Thread.Sleep(100);
+        ProcessModelId.SetCurrentProcessExplicitAppUserModelID(Guid.NewGuid().ToString());
+        RestartButtonForm.Show();
+        CloseButtonForm.Show();
     }
 
     public void CheckCollision()

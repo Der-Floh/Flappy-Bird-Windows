@@ -1,6 +1,6 @@
 ﻿using System.Runtime.InteropServices;
 
-namespace Flappy_Bird_Windows.Helper;
+namespace Flappy_Bird_Windows.Utility;
 
 public static class ProcessModelId
 {

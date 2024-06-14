@@ -1,5 +1,5 @@
 ﻿using Flappy_Bird_Windows.Forms;
-using Flappy_Bird_Windows.Helper;
+using Flappy_Bird_Windows.Utility;
 
 namespace Flappy_Bird_Windows.Repository.Bird;
 

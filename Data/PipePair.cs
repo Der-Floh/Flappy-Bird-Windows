@@ -1,5 +1,5 @@
 ﻿using Flappy_Bird_Windows.Forms;
-using Flappy_Bird_Windows.Helper;
+using Flappy_Bird_Windows.Utility;
 
 namespace Flappy_Bird_Windows.Data;
 
@@ -12,8 +12,6 @@ public sealed class PipePair : IPipePair
 
     public PipePair(PipeTopForm pipeTop, PipeBottomForm pipeBottom)
     {
-        ProcessModelId.SetCurrentProcessExplicitAppUserModelID(Guid.NewGuid().ToString());
-
         _pipeTop = pipeTop;
         _pipeBottom = pipeBottom;
 
@@ -23,6 +21,7 @@ public sealed class PipePair : IPipePair
 
     public void Show()
     {
+        ProcessModelId.SetCurrentProcessExplicitAppUserModelID(Guid.NewGuid().ToString());
         _pipeTop.Show();
         _pipeBottom.Show();
     }

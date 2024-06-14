@@ -1,4 +1,4 @@
-using Flappy_Bird_Windows.Helper;
+using Flappy_Bird_Windows.Utility;
 
 namespace Flappy_Bird_Windows.Forms;
 
@@ -21,8 +21,6 @@ public sealed partial class BirdForm : Form
 
     public BirdForm(Color color)
     {
-        ProcessModelId.SetCurrentProcessExplicitAppUserModelID(Guid.NewGuid().ToString());
-
         _key = GetKeyFromColor(color);
         Color = color;
         var upFlapFileName = color.Name.ToLower() + "bird_upflap";
@@ -121,7 +119,11 @@ public sealed partial class BirdForm : Form
         AnimationState = (BirdAnimationState)_animationStateIndex;
     }
 
-    private void Bird_Shown(object sender, EventArgs e) => AnimationTimer.Enabled = true;
+    private void Bird_Shown(object sender, EventArgs e)
+    {
+        ProcessModelId.SetCurrentProcessExplicitAppUserModelID(Guid.NewGuid().ToString());
+        AnimationTimer.Enabled = true;
+    }
 }
 
 public enum BirdAnimationState

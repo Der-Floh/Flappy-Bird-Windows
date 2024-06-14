@@ -1,6 +1,6 @@
 ﻿namespace Flappy_Bird_Windows.Forms;
 
-sealed partial class GameOverForm
+sealed partial class SingleButtonForm
 {
     /// <summary>
     /// Required designer variable.
@@ -28,40 +28,39 @@ sealed partial class GameOverForm
     /// </summary>
     private void InitializeComponent()
     {
-        var resources = new System.ComponentModel.ComponentResourceManager(typeof(GameOverForm));
-        GameOverPixelBox = new CustomControls.PixelBox();
-        ((System.ComponentModel.ISupportInitialize)GameOverPixelBox).BeginInit();
+        var resources = new System.ComponentModel.ComponentResourceManager(typeof(SingleButtonForm));
+        ButtonPixelBox = new CustomControls.PixelBox();
+        ((System.ComponentModel.ISupportInitialize)ButtonPixelBox).BeginInit();
         SuspendLayout();
         // 
-        // GameOverPixelBox
+        // ButtonPixelBox
         // 
-        GameOverPixelBox.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-        GameOverPixelBox.BackColor = Color.Transparent;
-        GameOverPixelBox.Image = Properties.Resources.text_game_over;
-        GameOverPixelBox.Location = new Point(0, 0);
-        GameOverPixelBox.Name = "GameOverPixelBox";
-        GameOverPixelBox.Size = new Size(509, 104);
-        GameOverPixelBox.SizeMode = PictureBoxSizeMode.StretchImage;
-        GameOverPixelBox.TabIndex = 10;
-        GameOverPixelBox.TabStop = false;
+        ButtonPixelBox.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+        ButtonPixelBox.Cursor = Cursors.Hand;
+        ButtonPixelBox.Image = Properties.Resources.button_restart;
+        ButtonPixelBox.Location = new Point(0, 0);
+        ButtonPixelBox.Name = "ButtonPixelBox";
+        ButtonPixelBox.Size = new Size(221, 83);
+        ButtonPixelBox.SizeMode = PictureBoxSizeMode.StretchImage;
+        ButtonPixelBox.TabIndex = 0;
+        ButtonPixelBox.TabStop = false;
         // 
-        // GameOverForm
+        // SingleButtonForm
         // 
         AutoScaleDimensions = new SizeF(7F, 15F);
         AutoScaleMode = AutoScaleMode.Font;
-        BackColor = Color.PaleGoldenrod;
-        ClientSize = new Size(508, 104);
-        Controls.Add(GameOverPixelBox);
-        DoubleBuffered = true;
+        ClientSize = new Size(222, 83);
+        Controls.Add(ButtonPixelBox);
         Icon = (Icon)resources.GetObject("$this.Icon");
         MaximizeBox = false;
         MinimizeBox = false;
-        Name = "GameOverForm";
+        Name = "SingleButtonForm";
         StartPosition = FormStartPosition.Manual;
-        ((System.ComponentModel.ISupportInitialize)GameOverPixelBox).EndInit();
+        ((System.ComponentModel.ISupportInitialize)ButtonPixelBox).EndInit();
         ResumeLayout(false);
     }
 
     #endregion
-    private CustomControls.PixelBox GameOverPixelBox;
+
+    public CustomControls.PixelBox ButtonPixelBox;
 }
