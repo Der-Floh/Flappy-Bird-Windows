@@ -32,5 +32,9 @@ pipedespawnoffset=0
 pipespawndelay=3000
 instantrestart=false
 closeonloose=false
+
+[program]
 alwaysontop=true
+savescore=true
+maxsavedscores=1000
 ```
