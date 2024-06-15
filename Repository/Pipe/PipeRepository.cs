@@ -21,7 +21,7 @@ public sealed class PipeRepository : IPipeRepository
         _screenWidth = Screen.PrimaryScreen!.Bounds.Width;
         _pipeScreenDistanceMin = Program.GameplayConfig.PipeScreenDistanceMin;
         _random = new Random();
-        _lastGapY = _random.Next(_screenHeight / 3);
+        _lastGapY = _random.Next(_screenHeight / 2);
     }
 
     public IPipePair NewPipePair()
