@@ -10,7 +10,8 @@ public sealed class PipeRepository : IPipeRepository
 
     private readonly int _screenHeight;
     private readonly int _screenWidth;
-    private readonly Random _random = new Random();
+    private readonly int _pipeScreenDistanceMin;
+    private readonly Random _random;
 
     private int _lastGapY;
 
@@ -18,13 +19,15 @@ public sealed class PipeRepository : IPipeRepository
     {
         _screenHeight = Screen.PrimaryScreen!.Bounds.Height;
         _screenWidth = Screen.PrimaryScreen!.Bounds.Width;
+        _pipeScreenDistanceMin = Program.GameplayConfig.PipeScreenDistanceMin;
+        _random = new Random();
         _lastGapY = _random.Next(_screenHeight / 3);
     }
 
     public IPipePair NewPipePair()
     {
         var gap = _random.Next(Program.GameplayConfig.PipeGapMin, Program.GameplayConfig.PipeGapMax);
-        var pipeTopHeight = Math.Clamp(_random.Next(_lastGapY - Program.GameplayConfig.PipeGapShift, _lastGapY + Program.GameplayConfig.PipeGapShift), 50, _screenHeight - gap - 100);
+        var pipeTopHeight = CalcPipeTopHeight(gap);
         var pipeBottomHeight = _screenHeight - gap - pipeTopHeight;
         _lastGapY = pipeTopHeight;
 
@@ -41,6 +44,33 @@ public sealed class PipeRepository : IPipeRepository
         pipePair.PipeBottom = pipeBottomForm;
         Pipes.Add(pipePair);
         return pipePair;
+    }
+
+    private int CalcPipeTopHeight(int gap)
+    {
+        var isMoreTop = false;
+        if (_lastGapY == _screenHeight - gap - _pipeScreenDistanceMin * 2)
+            isMoreTop = true;
+        else if (_lastGapY != _pipeScreenDistanceMin)
+            isMoreTop = _random.Next(2) == 0;
+
+        int minPipeTopHeight, maxPipeTopHeight;
+
+        if (isMoreTop)
+        {
+            minPipeTopHeight = _lastGapY - Program.GameplayConfig.PipeGapShiftMax;
+            maxPipeTopHeight = _lastGapY - Program.GameplayConfig.PipeGapShiftMin;
+        }
+        else
+        {
+            minPipeTopHeight = _lastGapY + Program.GameplayConfig.PipeGapShiftMin;
+            maxPipeTopHeight = _lastGapY + Program.GameplayConfig.PipeGapShiftMax;
+        }
+
+        minPipeTopHeight = Math.Clamp(minPipeTopHeight, _pipeScreenDistanceMin, _screenHeight - gap - _pipeScreenDistanceMin * 2);
+        maxPipeTopHeight = Math.Clamp(maxPipeTopHeight, _pipeScreenDistanceMin, _screenHeight - gap - _pipeScreenDistanceMin * 2);
+
+        return _random.Next(minPipeTopHeight, maxPipeTopHeight);
     }
 
     public void KillAll()
