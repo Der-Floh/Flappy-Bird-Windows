@@ -68,7 +68,6 @@ sealed partial class PipeTopForm
         Icon = (Icon)resources.GetObject("$this.Icon");
         MaximizeBox = false;
         MinimizeBox = false;
-        MinimumSize = new Size(0, 95);
         Name = "PipeTopForm";
         StartPosition = FormStartPosition.Manual;
         ((System.ComponentModel.ISupportInitialize)PipeBottomPixelBox).EndInit();
