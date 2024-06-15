@@ -22,4 +22,10 @@ public sealed partial class GameOverForm : Form
     {
         RestartEvent?.Invoke(this, EventArgs.Empty);
     }
+
+    private void GameOverForm_FormClosing(object sender, FormClosingEventArgs e)
+    {
+        e.Cancel = true;
+        Hide();
+    }
 }

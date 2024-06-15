@@ -114,6 +114,7 @@ sealed partial class ScoreBoardForm
         MinimizeBox = false;
         Name = "ScoreBoardForm";
         StartPosition = FormStartPosition.Manual;
+        FormClosing += ScoreBoardForm_FormClosing;
         ((System.ComponentModel.ISupportInitialize)ScoreBoardPixelBox).EndInit();
         ((System.ComponentModel.ISupportInitialize)NewPixelBox).EndInit();
         ((System.ComponentModel.ISupportInitialize)MedalPixelBox).EndInit();

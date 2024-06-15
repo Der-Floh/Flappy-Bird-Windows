@@ -58,6 +58,7 @@ sealed partial class GameOverForm
         MinimizeBox = false;
         Name = "GameOverForm";
         StartPosition = FormStartPosition.Manual;
+        FormClosing += GameOverForm_FormClosing;
         ((System.ComponentModel.ISupportInitialize)GameOverPixelBox).EndInit();
         ResumeLayout(false);
     }

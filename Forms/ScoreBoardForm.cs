@@ -46,4 +46,10 @@ public sealed partial class ScoreBoardForm : Form
         else
             MedalPixelBox.Image = Properties.Resources.ResourceManager.GetObject("medal_empty") as Bitmap;
     }
+
+    private void ScoreBoardForm_FormClosing(object sender, FormClosingEventArgs e)
+    {
+        e.Cancel = true;
+        Hide();
+    }
 }
