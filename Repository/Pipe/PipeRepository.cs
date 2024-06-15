@@ -1,5 +1,6 @@
 ﻿using Flappy_Bird_Windows.Data;
 using Flappy_Bird_Windows.Forms;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Flappy_Bird_Windows.Repository.Pipe;
 
@@ -35,7 +36,9 @@ public sealed class PipeRepository : IPipeRepository
         pipeBottomForm.Size = new Size(pipeBottomForm.Width, pipeBottomHeight);
         pipeBottomForm.Location = new Point(_screenWidth - pipeBottomForm.Width + Program.GameplayConfig.PipeSpawnOffset, _screenHeight - pipeBottomHeight);
 
-        var pipePair = new PipePair(pipeTopForm, pipeBottomForm);
+        var pipePair = Program.Services!.GetRequiredService<IPipePair>();
+        pipePair.PipeTop = pipeTopForm;
+        pipePair.PipeBottom = pipeBottomForm;
         Pipes.Add(pipePair);
         return pipePair;
     }

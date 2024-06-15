@@ -1,6 +1,6 @@
 ﻿namespace Flappy_Bird_Windows.Data.Config;
 
-public sealed class Gameplay
+public sealed class GameplayConfig
 {
     public int BirdGravity { get; set; } = 1;
     public int BirdFlapPower { get; set; } = 30;
@@ -14,5 +14,4 @@ public sealed class Gameplay
     public int PipeSpawnDelay { get; set; } = 3000;
     public bool InstantRestart { get; set; } = false;
     public bool CloseOnLoose { get; set; } = false;
-    public bool AlwaysOnTop { get; set; } = true;
 }

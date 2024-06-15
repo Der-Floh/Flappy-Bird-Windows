@@ -37,6 +37,8 @@ public sealed partial class GameForm : Form
 
         GameOverForm = new GameOverForm();
         ScoreBoardForm = new ScoreBoardForm();
+        if (Program.ProgramConfig.SaveScore)
+            ScoreBoardForm.LoadBestScore();
 
         RestartButtonForm = new SingleButtonForm();
         RestartButtonForm.ButtonPixelBox.Image = Properties.Resources.ResourceManager.GetObject("button_restart") as Bitmap;
@@ -93,6 +95,8 @@ public sealed partial class GameForm : Form
         PipeMoveTimer.Enabled = false;
         _birdManagerService.ControlsEnabled = false;
 
+        ScoreBoardForm.Score = ScoreForm.ScoreValue;
+
         if (Program.GameplayConfig.CloseOnLoose)
             Close();
         else if (Program.GameplayConfig.InstantRestart)
@@ -107,8 +111,6 @@ public sealed partial class GameForm : Form
         GameOverForm.Location = new Point(_screenWidth / 2 - GameOverForm.Width / 2, ScoreBoardForm.Location.Y - GameOverForm.Height - 20);
         RestartButtonForm.Location = new Point(_screenWidth / 2 - RestartButtonForm.Width - 20, ScoreBoardForm.Location.Y + ScoreBoardForm.Height + 20);
         CloseButtonForm.Location = new Point(_screenWidth / 2 + 20, ScoreBoardForm.Location.Y + ScoreBoardForm.Height + 20);
-
-        ScoreBoardForm.Score = ScoreForm.ScoreValue;
 
         ScoreForm.Hide();
 

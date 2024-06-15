@@ -6,7 +6,7 @@ public sealed partial class SingleButtonForm : Form
     {
         InitializeComponent();
 
-        TopMost = Program.GameplayConfig.AlwaysOnTop;
+        TopMost = Program.ProgramConfig.AlwaysOnTop;
         BackColor = Color.FromArgb(255, 85, 48, 0);
     }
 }

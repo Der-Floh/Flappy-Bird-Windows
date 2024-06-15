@@ -7,43 +7,58 @@ public sealed class PipePair : IPipePair
 {
     public event EventHandler? Closed;
 
-    private readonly PipeTopForm _pipeTop;
-    private readonly PipeBottomForm _pipeBottom;
-
-    public PipePair(PipeTopForm pipeTop, PipeBottomForm pipeBottom)
+    public PipeTopForm? PipeTop
     {
-        _pipeTop = pipeTop;
-        _pipeBottom = pipeBottom;
-
-        _pipeTop.FormClosed += PipeTop_FormClosed;
-        _pipeBottom.FormClosed += PipeBottom_FormClosed;
+        get => _pipeTop;
+        set
+        {
+            if (_pipeTop is not null && !_pipeTop.IsDisposed)
+                _pipeTop.Close();
+            _pipeTop = value;
+            if (_pipeTop is not null)
+                _pipeTop.FormClosed += PipeTop_FormClosed;
+        }
     }
+    private PipeTopForm? _pipeTop;
+    public PipeBottomForm? PipeBottom
+    {
+        get => _pipeBottom;
+        set
+        {
+            if (_pipeBottom is not null && !_pipeBottom.IsDisposed)
+                _pipeBottom.Close();
+            _pipeBottom = value;
+            if (_pipeBottom is not null)
+                _pipeBottom.FormClosed += PipeBottom_FormClosed;
+        }
+    }
+    private PipeBottomForm? _pipeBottom;
 
     public void Show()
     {
         ProcessModelId.SetCurrentProcessExplicitAppUserModelID(Guid.NewGuid().ToString());
-        _pipeTop.Show();
-        _pipeBottom.Show();
+        PipeTop?.Show();
+        PipeBottom?.Show();
     }
 
     public void Kill()
     {
-        _pipeTop.Close();
-        _pipeBottom.Close();
+        PipeTop?.Close();
+        PipeBottom?.Close();
     }
 
     public void Move()
     {
-        _pipeTop.MovePipe();
-        _pipeBottom.MovePipe();
+        PipeTop?.MovePipe();
+        PipeBottom?.MovePipe();
     }
 
     public bool HasCollision(Rectangle birdRect)
     {
-        if (!_pipeTop.IsDisposed && birdRect.IntersectsWith(_pipeTop.Bounds))
+        if (PipeTop is not null && !PipeTop.IsDisposed && birdRect.IntersectsWith(PipeTop.Bounds))
             return true;
 
-        if (!_pipeBottom.IsDisposed && birdRect.IntersectsWith(_pipeBottom.Bounds))
+        if (PipeBottom is not null && !PipeBottom.IsDisposed && birdRect.IntersectsWith(PipeBottom.Bounds))
             return true;
 
         return false;
@@ -51,34 +66,40 @@ public sealed class PipePair : IPipePair
 
     public int GetScoreCalcLocationX()
     {
-        if (!_pipeTop.IsDisposed)
-            return _pipeTop.Location.X + _pipeTop.Width / 2;
+        if (PipeTop is not null && !PipeTop.IsDisposed)
+            return PipeTop.Location.X + PipeTop.Width / 2;
 
-        if (!_pipeBottom.IsDisposed)
-            return _pipeBottom.Location.X + _pipeBottom.Width / 2;
+        if (PipeBottom is not null && !PipeBottom.IsDisposed)
+            return PipeBottom.Location.X + PipeBottom.Width / 2;
 
         return 0;
     }
 
     private void CheckAndRaiseClosed()
     {
-        if (_pipeTop.IsDisposed && _pipeBottom.IsDisposed)
+        if ((PipeTop?.IsDisposed ?? true) && (PipeBottom?.IsDisposed ?? true))
             Closed?.Invoke(this, EventArgs.Empty);
     }
 
     private void PipeTop_FormClosed(object? sender, FormClosedEventArgs e)
     {
-        _pipeTop.FormClosed -= PipeTop_FormClosed;
-        _pipeTop.BackgroundImage?.Dispose();
-        _pipeTop.Dispose();
+        if (PipeTop is not null)
+        {
+            PipeTop.FormClosed -= PipeTop_FormClosed;
+            PipeTop.BackgroundImage?.Dispose();
+            PipeTop.Dispose();
+        }
         CheckAndRaiseClosed();
     }
 
     private void PipeBottom_FormClosed(object? sender, FormClosedEventArgs e)
     {
-        _pipeBottom.FormClosed -= PipeBottom_FormClosed;
-        _pipeBottom.BackgroundImage?.Dispose();
-        _pipeBottom.Dispose();
+        if (PipeBottom is not null)
+        {
+            PipeBottom.FormClosed -= PipeBottom_FormClosed;
+            PipeBottom.BackgroundImage?.Dispose();
+            PipeBottom.Dispose();
+        }
         CheckAndRaiseClosed();
     }
 }

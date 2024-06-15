@@ -8,7 +8,7 @@ public sealed partial class GameOverForm : Form
     {
         InitializeComponent();
 
-        TopMost = Program.GameplayConfig.AlwaysOnTop;
+        TopMost = Program.ProgramConfig.AlwaysOnTop;
         BackColor = Color.FromArgb(255, 234, 252, 219);
     }
 

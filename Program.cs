@@ -1,3 +1,4 @@
+using Flappy_Bird_Windows.Data;
 using Flappy_Bird_Windows.Data.Config;
 using Flappy_Bird_Windows.Forms;
 using Flappy_Bird_Windows.Repository.Bird;
@@ -14,9 +15,10 @@ namespace Flappy_Bird_Windows;
 internal static class Program
 {
     public static ServiceProvider? Services { get; private set; }
-    public static PrivateFontCollection Fonts { get; private set; } = new PrivateFontCollection();
-    public static Controls ControlsConfig { get; private set; } = new Controls();
-    public static Gameplay GameplayConfig { get; private set; } = new Gameplay();
+    public static PrivateFontCollection Fonts { get; private set; } = new();
+    public static ControlsConfig ControlsConfig { get; private set; } = new();
+    public static GameplayConfig GameplayConfig { get; private set; } = new();
+    public static ProgramConfig ProgramConfig { get; private set; } = new();
 
     [STAThread]
     static void Main()
@@ -28,8 +30,9 @@ internal static class Program
         Fonts.AddFontFile(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "font.ttf"));
 
         IConfiguration config = new ConfigurationBuilder().AddIniFile("config.ini").Build();
-        config.GetSection(nameof(Controls)).Bind(ControlsConfig);
-        config.GetSection(nameof(Gameplay)).Bind(GameplayConfig);
+        config.GetSection("controls").Bind(ControlsConfig);
+        config.GetSection("gameplay").Bind(GameplayConfig);
+        config.GetSection("program").Bind(ProgramConfig);
 
         ApplicationConfiguration.Initialize();
         Application.Run(new GameForm());
@@ -42,6 +45,7 @@ internal static class Program
         serviceCollection.AddSingleton<IPipeRepository, PipeRepository>();
         serviceCollection.AddSingleton<IBirdManagerService, BirdManagerService>();
         serviceCollection.AddSingleton<IPipeManagerService, PipeManagerService>();
+        serviceCollection.AddTransient<IPipePair, PipePair>();
         Services = serviceCollection.BuildServiceProvider();
     }
 }

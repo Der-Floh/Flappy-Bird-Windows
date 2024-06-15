@@ -33,7 +33,7 @@ public sealed partial class BirdForm : Form
 
         InitializeComponent();
 
-        TopMost = Program.GameplayConfig.AlwaysOnTop;
+        TopMost = Program.ProgramConfig.AlwaysOnTop;
 
         Icon = Properties.Resources.ResourceManager.GetObject(iconFileName) as Icon;
         BackgroundImage = _upFlapImage;

@@ -1,6 +1,6 @@
 ﻿namespace Flappy_Bird_Windows.Data.Config;
 
-public sealed class Controls
+public sealed class ControlsConfig
 {
     public Keys Player1 { get; private set; } = Keys.Space;
     public Keys Player2 { get; private set; } = Keys.Up;

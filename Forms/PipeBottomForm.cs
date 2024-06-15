@@ -6,7 +6,7 @@ public sealed partial class PipeBottomForm : Form
     {
         InitializeComponent();
 
-        TopMost = Program.GameplayConfig.AlwaysOnTop;
+        TopMost = Program.ProgramConfig.AlwaysOnTop;
     }
 
     protected override void OnPaintBackground(PaintEventArgs e)
