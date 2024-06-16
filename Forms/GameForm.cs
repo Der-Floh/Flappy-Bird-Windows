@@ -15,7 +15,8 @@ public sealed partial class GameForm : Form
     public SingleButtonForm CloseButtonForm { get; set; }
     public ScoreForm ScoreForm { get; set; }
     public bool IsGameOver { get; set; }
-    public int BestScore { get; set; }
+    public int ScoreValue { get => _scorerValue; set { _scorerValue = value; ScoreForm.ScoreValue = value; } }
+    private int _scorerValue;
 
     private readonly IPipeManagerService _pipeManagerService;
     private readonly IPipeRepository _pipeRepository;
@@ -72,8 +73,7 @@ public sealed partial class GameForm : Form
         CloseButtonForm.Hide();
         _pipeRepository.KillAll();
 
-        ScoreForm.Close();
-        ScoreForm = new ScoreForm();
+        ScoreValue = 0;
         ScoreForm.Show();
 
         PipeSpawnTimer.Enabled = true;
@@ -95,7 +95,7 @@ public sealed partial class GameForm : Form
         PipeMoveTimer.Enabled = false;
         _birdManagerService.ControlsEnabled = false;
 
-        ScoreBoardForm.Score = ScoreForm.ScoreValue;
+        ScoreBoardForm.ScoreValue = ScoreValue;
 
         if (Program.GameplayConfig.CloseOnLoose)
             Close();
@@ -136,7 +136,7 @@ public sealed partial class GameForm : Form
                 }
                 if (_pipeManagerService.HasScoreCollision(birdRect) && _lastScoreCount.AddSeconds(1) < DateTime.Now)
                 {
-                    ScoreCollided(ScoreForm);
+                    ScoreValue += 1 * Program.GameplayConfig.ScoreMultiplier;
                     _lastScoreCount = DateTime.Now;
                 }
             }
@@ -152,16 +152,6 @@ public sealed partial class GameForm : Form
             return;
         }
         bird.KillBird();
-    }
-
-    private static void ScoreCollided(ScoreForm score)
-    {
-        if (score.InvokeRequired)
-        {
-            score.BeginInvoke(new Action(() => ScoreCollided(score)));
-            return;
-        }
-        score.AddScore();
     }
 
     private async Task CollisionChecker()

@@ -55,6 +55,7 @@ sealed partial class ScoreForm
         Name = "ScoreForm";
         StartPosition = FormStartPosition.Manual;
         Text = "Score";
+        FormClosing += ScoreForm_FormClosing;
         ResumeLayout(false);
     }
 

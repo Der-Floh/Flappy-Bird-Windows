@@ -2,7 +2,8 @@
 
 public sealed partial class ScoreForm : Form
 {
-    public int ScoreValue { get; set; }
+    public int ScoreValue { get => _scoreValue; set { _scoreValue = value; UpdateScore(); } }
+    private int _scoreValue;
 
     public ScoreForm()
     {
@@ -13,9 +14,19 @@ public sealed partial class ScoreForm : Form
         ScoreLabel.Font = new Font(Program.Fonts.Families[0], ScoreLabel.Font.Size);
     }
 
-    public void AddScore()
+    public void UpdateScore()
     {
-        ScoreValue++;
+        if (InvokeRequired)
+        {
+            BeginInvoke(new Action(UpdateScore));
+            return;
+        }
         ScoreLabel.Text = ScoreValue.ToString();
+    }
+
+    private void ScoreForm_FormClosing(object sender, FormClosingEventArgs e)
+    {
+        e.Cancel = true;
+        Hide();
     }
 }

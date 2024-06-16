@@ -31,6 +31,8 @@ sealed partial class BirdForm
         components = new System.ComponentModel.Container();
         var resources = new System.ComponentModel.ComponentResourceManager(typeof(BirdForm));
         AnimationTimer = new System.Windows.Forms.Timer(components);
+        BirdPixelBox = new CustomControls.PixelBox();
+        ((System.ComponentModel.ISupportInitialize)BirdPixelBox).BeginInit();
         SuspendLayout();
         // 
         // AnimationTimer
@@ -38,25 +40,35 @@ sealed partial class BirdForm
         AnimationTimer.Interval = 200;
         AnimationTimer.Tick += AnimationTimer_Tick;
         // 
+        // BirdPixelBox
+        // 
+        BirdPixelBox.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+        BirdPixelBox.Image = Properties.Resources.yellowbird_upflap;
+        BirdPixelBox.Location = new Point(0, 0);
+        BirdPixelBox.Name = "BirdPixelBox";
+        BirdPixelBox.Size = new Size(120, 86);
+        BirdPixelBox.SizeMode = PictureBoxSizeMode.StretchImage;
+        BirdPixelBox.TabIndex = 0;
+        BirdPixelBox.TabStop = false;
+        // 
         // BirdForm
         // 
         AutoScaleDimensions = new SizeF(7F, 15F);
         AutoScaleMode = AutoScaleMode.Font;
-        BackgroundImage = Properties.Resources.yellowbird_upflap;
-        BackgroundImageLayout = ImageLayout.Stretch;
         ClientSize = new Size(120, 86);
+        Controls.Add(BirdPixelBox);
         DoubleBuffered = true;
         Icon = (Icon)resources.GetObject("$this.Icon");
-        KeyPreview = true;
         MaximizeBox = false;
         MinimizeBox = false;
         Name = "BirdForm";
-        SizeGripStyle = SizeGripStyle.Hide;
         StartPosition = FormStartPosition.Manual;
         Shown += Bird_Shown;
+        ((System.ComponentModel.ISupportInitialize)BirdPixelBox).EndInit();
         ResumeLayout(false);
     }
 
     #endregion
     private System.Windows.Forms.Timer AnimationTimer;
+    private CustomControls.PixelBox BirdPixelBox;
 }

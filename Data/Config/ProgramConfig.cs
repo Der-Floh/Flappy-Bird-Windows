@@ -4,5 +4,5 @@ public sealed class ProgramConfig
 {
     public bool AlwaysOnTop { get; set; } = true;
     public bool SaveScore { get; set; } = true;
-    public int MaxSavedScores { get; set; } = 1000;
+    public int SavedScoresMax { get; set; } = 1000;
 }

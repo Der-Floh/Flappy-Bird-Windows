@@ -36,16 +36,10 @@ public sealed partial class BirdForm : Form
         TopMost = Program.ProgramConfig.AlwaysOnTop;
 
         Icon = Properties.Resources.ResourceManager.GetObject(iconFileName) as Icon;
-        BackgroundImage = _upFlapImage;
+        BirdPixelBox.Image = _upFlapImage;
 
         ControlsEnabled = true;
         Location = new Point(200, 0);
-    }
-
-    protected override void OnPaintBackground(PaintEventArgs e)
-    {
-        e.Graphics.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.NearestNeighbor;
-        base.OnPaintBackground(e);
     }
 
     public void MoveBird()
@@ -80,7 +74,7 @@ public sealed partial class BirdForm : Form
 
     public void DisposeImages()
     {
-        BackgroundImage?.Dispose();
+        BirdPixelBox.Image?.Dispose();
         _upFlapImage?.Dispose();
         _midFlapImage?.Dispose();
         _downFlapImage?.Dispose();
@@ -104,13 +98,13 @@ public sealed partial class BirdForm : Form
         switch (AnimationState)
         {
             case BirdAnimationState.UpFlap:
-                BackgroundImage = _upFlapImage;
+                BirdPixelBox.Image = _upFlapImage;
                 break;
             case BirdAnimationState.MidFlap:
-                BackgroundImage = _midFlapImage;
+                BirdPixelBox.Image = _midFlapImage;
                 break;
             case BirdAnimationState.DownFlap:
-                BackgroundImage = _downFlapImage;
+                BirdPixelBox.Image = _downFlapImage;
                 break;
         }
         _animationStateIndex++;

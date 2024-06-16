@@ -5,10 +5,10 @@ namespace Flappy_Bird_Windows.Forms;
 
 public sealed partial class ScoreBoardForm : Form
 {
-    public int Score { get => _score; set { _score = value; SetScore(value); } }
-    private int _score;
-    public int BestScore { get => _bestScore; set { _bestScore = value; BestScoreLabel.Text = value.ToString(); } }
-    private int _bestScore;
+    public int ScoreValue { get => _scoreValue; set { _scoreValue = value; UpdateScore(); } }
+    private int _scoreValue;
+    public int BestScoreValue { get => _bestScoreValue; set { _bestScoreValue = value; BestScoreLabel.Text = value.ToString(); } }
+    private int _bestScoreValue;
 
     private readonly string _scoreSaveFolder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "Flappy Bird Windows");
 
@@ -23,15 +23,15 @@ public sealed partial class ScoreBoardForm : Form
         BestScoreLabel.Font = new Font(Program.Fonts.Families[0], BestScoreLabel.Font.Size);
     }
 
-    public void SetScore(int score)
+    public void UpdateScore()
     {
-        if (Program.ProgramConfig.SaveScore && Score != 0)
+        if (Program.ProgramConfig.SaveScore && ScoreValue != 0)
             SaveScore();
 
-        CurrScoreLabel.Text = score.ToString();
-        if (score > BestScore)
+        CurrScoreLabel.Text = ScoreValue.ToString();
+        if (ScoreValue > BestScoreValue)
         {
-            BestScore = score;
+            BestScoreValue = ScoreValue;
             if (Program.ProgramConfig.SaveScore)
                 SaveBestScore();
             NewPixelBox.Visible = true;
@@ -40,7 +40,21 @@ public sealed partial class ScoreBoardForm : Form
         {
             NewPixelBox.Visible = false;
         }
-        SetScoreMedal(score);
+        UpdateScoreMedal();
+    }
+
+    public void UpdateScoreMedal()
+    {
+        if (ScoreValue >= 40)
+            MedalPixelBox.Image = Properties.Resources.ResourceManager.GetObject("medal_platinum") as Bitmap;
+        else if (ScoreValue >= 30)
+            MedalPixelBox.Image = Properties.Resources.ResourceManager.GetObject("medal_gold") as Bitmap;
+        else if (ScoreValue >= 20)
+            MedalPixelBox.Image = Properties.Resources.ResourceManager.GetObject("medal_silver") as Bitmap;
+        else if (ScoreValue >= 10)
+            MedalPixelBox.Image = Properties.Resources.ResourceManager.GetObject("medal_bronze") as Bitmap;
+        else
+            MedalPixelBox.Image = Properties.Resources.ResourceManager.GetObject("medal_empty") as Bitmap;
     }
 
     public void SaveScore()
@@ -53,9 +67,9 @@ public sealed partial class ScoreBoardForm : Form
             scoresCsv = File.ReadAllText(Path.Combine(_scoreSaveFolder, "scores.csv"));
 
         var scores = CSVSerializer.Deserialize<Score>(scoresCsv).ToList();
-        scores.Insert(0, new Score { Username = Environment.UserName, ScoreValue = Score, Time = DateTime.Now });
-        if (scores.Count > Program.ProgramConfig.MaxSavedScores)
-            scores.RemoveRange(Program.ProgramConfig.MaxSavedScores, scores.Count - Program.ProgramConfig.MaxSavedScores);
+        scores.Insert(0, new Score { Username = Environment.UserName, ScoreValue = ScoreValue, Time = DateTime.Now });
+        if (scores.Count > Program.ProgramConfig.SavedScoresMax)
+            scores.RemoveRange(Program.ProgramConfig.SavedScoresMax, scores.Count - Program.ProgramConfig.SavedScoresMax);
         File.WriteAllText(Path.Combine(_scoreSaveFolder, "scores.csv"), CSVSerializer.Serialize(scores));
     }
 
@@ -69,9 +83,9 @@ public sealed partial class ScoreBoardForm : Form
             scoresCsv = File.ReadAllText(Path.Combine(_scoreSaveFolder, "bestscores.csv"));
 
         var scores = CSVSerializer.Deserialize<Score>(scoresCsv).ToList();
-        scores.Insert(0, new Score { Username = Environment.UserName, ScoreValue = BestScore, Time = DateTime.Now });
-        if (scores.Count > Program.ProgramConfig.MaxSavedScores)
-            scores.RemoveRange(Program.ProgramConfig.MaxSavedScores, scores.Count - Program.ProgramConfig.MaxSavedScores);
+        scores.Insert(0, new Score { Username = Environment.UserName, ScoreValue = BestScoreValue, Time = DateTime.Now });
+        if (scores.Count > Program.ProgramConfig.SavedScoresMax)
+            scores.RemoveRange(Program.ProgramConfig.SavedScoresMax, scores.Count - Program.ProgramConfig.SavedScoresMax);
         File.WriteAllText(Path.Combine(_scoreSaveFolder, "bestscores.csv"), CSVSerializer.Serialize(scores));
     }
 
@@ -83,21 +97,7 @@ public sealed partial class ScoreBoardForm : Form
         var scoresCsv = File.ReadAllText(Path.Combine(_scoreSaveFolder, "bestscores.csv"));
         var scores = CSVSerializer.Deserialize<Score>(scoresCsv);
         scores = scores.OrderByDescending(x => x.ScoreValue);
-        BestScore = scores.FirstOrDefault()?.ScoreValue ?? 0;
-    }
-
-    public void SetScoreMedal(int score)
-    {
-        if (score >= 40)
-            MedalPixelBox.Image = Properties.Resources.ResourceManager.GetObject("medal_platinum") as Bitmap;
-        else if (score >= 30)
-            MedalPixelBox.Image = Properties.Resources.ResourceManager.GetObject("medal_gold") as Bitmap;
-        else if (score >= 20)
-            MedalPixelBox.Image = Properties.Resources.ResourceManager.GetObject("medal_silver") as Bitmap;
-        else if (score >= 10)
-            MedalPixelBox.Image = Properties.Resources.ResourceManager.GetObject("medal_bronze") as Bitmap;
-        else
-            MedalPixelBox.Image = Properties.Resources.ResourceManager.GetObject("medal_empty") as Bitmap;
+        BestScoreValue = scores.FirstOrDefault()?.ScoreValue ?? 0;
     }
 
     private void ScoreBoardForm_FormClosing(object sender, FormClosingEventArgs e)

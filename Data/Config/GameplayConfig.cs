@@ -14,6 +14,7 @@ public sealed class GameplayConfig
     public int PipeSpawnOffset { get; set; } = 0;
     public int PipeDespawnOffset { get; set; } = 0;
     public int PipeSpawnDelay { get; set; } = 3000;
+    public int ScoreMultiplier { get; set; } = 1;
     public bool InstantRestart { get; set; } = false;
     public bool CloseOnLoose { get; set; } = false;
 }
