@@ -32,11 +32,12 @@ pipemovespeed=5
 pipespawnoffset=0
 pipedespawnoffset=0
 pipespawndelay=3000
+scoremultiplier=1
 instantrestart=false
 closeonloose=false
 
 [program]
 alwaysontop=true
 savescore=true
-maxsavedscores=1000
+savedscoresmax=1000
 ```
