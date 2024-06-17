@@ -6,6 +6,7 @@ public interface IPipePair
 {
     PipeTopForm? PipeTop { get; set; }
     PipeBottomForm? PipeBottom { get; set; }
+    public bool ScoreGiven { get; set; }
     event EventHandler? Closed;
 
     int GetScoreCalcLocationX();

@@ -31,9 +31,9 @@ public sealed class PipeManagerService : IPipeManagerService
 
     public bool HasCollision(Rectangle birdRect)
     {
-        foreach (var pipe in _pipeRepository.Pipes)
+        foreach (var pipePair in _pipeRepository.Pipes)
         {
-            if (pipe.HasCollision(birdRect))
+            if (pipePair.HasCollision(birdRect))
                 return true;
         }
         return false;
@@ -41,11 +41,16 @@ public sealed class PipeManagerService : IPipeManagerService
 
     public bool HasScoreCollision(Rectangle birdRect)
     {
-        foreach (var pipe in _pipeRepository.Pipes)
+        foreach (var pipePair in _pipeRepository.Pipes)
         {
-            var scoreRect = new Rectangle(pipe.GetScoreCalcLocationX(), 0, 1, _screenHeight);
+            if (pipePair.ScoreGiven)
+                continue;
+            var scoreRect = new Rectangle(pipePair.GetScoreCalcLocationX(), 0, 1, _screenHeight);
             if (birdRect.IntersectsWith(scoreRect))
+            {
+                pipePair.ScoreGiven = true;
                 return true;
+            }
         }
         return false;
     }

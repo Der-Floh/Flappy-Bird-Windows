@@ -25,8 +25,6 @@ public sealed partial class GameForm : Form
     private readonly int _screenWidth;
     private readonly int _screenHeight;
 
-    private DateTime _lastScoreCount = DateTime.MinValue;
-
     public GameForm()
     {
         _screenWidth = Screen.PrimaryScreen!.Bounds.Width;
@@ -131,14 +129,9 @@ public sealed partial class GameForm : Form
             {
                 var birdRect = new Rectangle(bird.Value.Location.X, bird.Value.Location.Y, bird.Value.Width, bird.Value.Height);
                 if (_pipeManagerService.HasCollision(birdRect))
-                {
                     BirdCollided(bird.Value);
-                }
-                if (_pipeManagerService.HasScoreCollision(birdRect) && _lastScoreCount.AddSeconds(1) < DateTime.Now)
-                {
+                if (_pipeManagerService.HasScoreCollision(birdRect))
                     ScoreValue += 1 * Program.GameplayConfig.ScoreMultiplier;
-                    _lastScoreCount = DateTime.Now;
-                }
             }
         }
         catch { }
@@ -184,7 +177,11 @@ public sealed partial class GameForm : Form
         }
     }
 
-    private void PipeSpawnTimer_Tick(object sender, EventArgs e) => _pipeManagerService.NewPipePair();
+    private void PipeSpawnTimer_Tick(object sender, EventArgs e)
+    {
+        _pipeManagerService.NewPipePair();
+        ScoreForm.Focus();
+    }
 
     private void PipeMoveTimer_Tick(object sender, EventArgs e) => _pipeManagerService.MovePipes();
 }

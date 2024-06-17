@@ -33,6 +33,7 @@ public sealed class PipePair : IPipePair
         }
     }
     private PipeBottomForm? _pipeBottom;
+    public bool ScoreGiven { get; set; }
 
     public void Show()
     {
