@@ -18,6 +18,7 @@ public sealed partial class BirdForm : Form
 
     private bool _keyUp = true;
     private int _animationStateIndex;
+    private int _animationStateDirection = 1;
 
     public BirdForm(Color color)
     {
@@ -39,7 +40,6 @@ public sealed partial class BirdForm : Form
         BirdPixelBox.Image = _upFlapImage;
 
         ControlsEnabled = true;
-        Location = new Point(200, 0);
     }
 
     public void MoveBird()
@@ -107,9 +107,12 @@ public sealed partial class BirdForm : Form
                 BirdPixelBox.Image = _downFlapImage;
                 break;
         }
-        _animationStateIndex++;
-        if (_animationStateIndex == Enum.GetNames<BirdAnimationState>().Length)
-            _animationStateIndex = 0;
+        _animationStateIndex += _animationStateDirection;
+        if (_animationStateIndex == Enum.GetNames<BirdAnimationState>().Length || _animationStateIndex == -1)
+        {
+            _animationStateDirection = -_animationStateDirection;
+            _animationStateIndex += _animationStateDirection;
+        }
         AnimationState = (BirdAnimationState)_animationStateIndex;
     }
 

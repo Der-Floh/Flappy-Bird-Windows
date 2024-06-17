@@ -293,6 +293,26 @@ namespace Flappy_Bird_Windows.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap tap_to_start {
+            get {
+                object obj = ResourceManager.GetObject("tap_to_start", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        /// </summary>
+        internal static System.Drawing.Icon tap_to_start_icon {
+            get {
+                object obj = ResourceManager.GetObject("tap_to_start_icon", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap text_game_over {
             get {
                 object obj = ResourceManager.GetObject("text_game_over", resourceCulture);

@@ -11,4 +11,5 @@ public interface IBirdManagerService
     void FlapBird(Color color);
     void MoveBirds();
     void NewBird(Color color);
+    void NewBird(Color color, Point location);
 }

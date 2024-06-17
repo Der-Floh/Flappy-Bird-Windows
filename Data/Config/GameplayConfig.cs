@@ -17,4 +17,5 @@ public sealed class GameplayConfig
     public int ScoreMultiplier { get; set; } = 1;
     public bool InstantRestart { get; set; } = false;
     public bool CloseOnLoose { get; set; } = false;
+    public bool TapToStart { get; set; } = true;
 }

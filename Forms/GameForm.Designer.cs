@@ -32,17 +32,16 @@ sealed partial class GameForm
         PipeSpawnTimer = new System.Windows.Forms.Timer(components);
         PipeMoveTimer = new System.Windows.Forms.Timer(components);
         BirdMoveTimer = new System.Windows.Forms.Timer(components);
+        BirdMovePreviewTimer = new System.Windows.Forms.Timer(components);
         SuspendLayout();
         // 
         // PipeSpawnTimer
         // 
-        PipeSpawnTimer.Enabled = true;
         PipeSpawnTimer.Interval = 3000;
         PipeSpawnTimer.Tick += PipeSpawnTimer_Tick;
         // 
         // PipeMoveTimer
         // 
-        PipeMoveTimer.Enabled = true;
         PipeMoveTimer.Interval = 10;
         PipeMoveTimer.Tick += PipeMoveTimer_Tick;
         // 
@@ -52,14 +51,19 @@ sealed partial class GameForm
         BirdMoveTimer.Interval = 10;
         BirdMoveTimer.Tick += BirdMoveTimer_Tick;
         // 
-        // Game
+        // BirdMovePreviewTimer
+        // 
+        BirdMovePreviewTimer.Interval = 10;
+        BirdMovePreviewTimer.Tick += BirdMovePreviewTimer_Tick;
+        // 
+        // GameForm
         // 
         AutoScaleDimensions = new SizeF(7F, 15F);
         AutoScaleMode = AutoScaleMode.Font;
         ClientSize = new Size(800, 450);
         MaximizeBox = false;
         MinimizeBox = false;
-        Name = "Game";
+        Name = "GameForm";
         ShowInTaskbar = false;
         Text = "Game";
         WindowState = FormWindowState.Minimized;
@@ -70,4 +74,5 @@ sealed partial class GameForm
     private System.Windows.Forms.Timer PipeSpawnTimer;
     private System.Windows.Forms.Timer PipeMoveTimer;
     private System.Windows.Forms.Timer BirdMoveTimer;
+    private System.Windows.Forms.Timer BirdMovePreviewTimer;
 }

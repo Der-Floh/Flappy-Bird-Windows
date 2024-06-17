@@ -117,16 +117,21 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <metadata name="PipeSpawnTimer.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>132, 17</value>
-  </metadata>
-  <metadata name="PipeMoveTimer.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>274, 17</value>
-  </metadata>
-  <metadata name="BirdMoveTimer.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>411, 17</value>
-  </metadata>
-  <metadata name="BirdMovePreviewTimer.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>546, 17</value>
-  </metadata>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        AAABAAEAAAAAAAEAGAC3AgAAFgAAAIlQTkcNChoKAAAADUlIRFIAAAEAAAABAAgGAAAAXHKoZgAAAn5J
+        REFUeJzt3bFtwzAQQFErUJ1Bsv8sGSQLKHWANAeDkIj/Xm0blC18sDjKrxcAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA1
+        x90LeMd1Xdfda4Cdfdy9AOA+AgBhAgBhAgBhAgBhAgBhAgBhAgBhAgBhAgBhAgBhjzoLMJ7t//pctBLY
+        1PfP6OV2ABAmABAmABAmABAmABAmABAmABAmABAmABAmABB2rvzwrUd7hyOVS638XlZe5+rf8ym/0ZPu
+        2yE7AAgTAAgTAAgTAAgTAAgTAAgTAAgTAAgTAAgTAAgTAAgbnwUYzfdvPCM9Wvt0Jv1Js/2VtVSuc8gO
+        AMIEAMIEAMIEAMIEAMIEAMIEAMIEAMIEAMIEAMIEAMLOrZ/dD7zFDgDCBADCBADCBADCBADCBADCBADC
+        BADCBADCBADCzuM4jskbMo8Fr5g+0npXK69z4/vcDgDCBADCBADCBADCBADCBADCBADCBADCBADCBADC
+        BADCzukbJmcHPHJ8Ayu/8yedM3Bv/csOAMIEAMIEAMIEAMIEAMIEAMIEAMIEAMIEAMIEAMIEAMJG/wmw
+        mrMD8Kbh+Qs7AAgTAAgTAAgTAAgTAAgTAAgTAAgTAAgTAAgTAAh71Cjw1Hh0GPjDDgDCBADCBADCBADC
+        BADCBADCBADCBADCBADCBADCBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAKDnF++lPkXaMvSWAAAAAElFTkSuQmCC
+</value>
+  </data>
 </root>

@@ -32,6 +32,15 @@ public sealed class BirdManagerService : IBirdManagerService
     {
         var bird = _birdRepository.NewBird(color);
         bird.FormClosed += Bird_FormClosed;
+        bird.Location = new Point(200, 0);
+        bird.Show();
+    }
+
+    public void NewBird(Color color, Point location)
+    {
+        var bird = _birdRepository.NewBird(color);
+        bird.FormClosed += Bird_FormClosed;
+        bird.Location = location;
         bird.Show();
     }
 

@@ -37,7 +37,7 @@ sealed partial class BirdForm
         // 
         // AnimationTimer
         // 
-        AnimationTimer.Interval = 200;
+        AnimationTimer.Interval = 80;
         AnimationTimer.Tick += AnimationTimer_Tick;
         // 
         // BirdPixelBox
@@ -70,5 +70,5 @@ sealed partial class BirdForm
 
     #endregion
     private System.Windows.Forms.Timer AnimationTimer;
-    private CustomControls.PixelBox BirdPixelBox;
+    public CustomControls.PixelBox BirdPixelBox;
 }
