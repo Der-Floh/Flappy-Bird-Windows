@@ -35,6 +35,7 @@ pipespawndelay=3000
 scoremultiplier=1
 instantrestart=false
 closeonloose=false
+taptostart=true
 
 [program]
 alwaysontop=true
