@@ -16,6 +16,8 @@ public sealed partial class ScoreBoardForm : Form
     {
         InitializeComponent();
 
+        ScoreBoardPixelBox.Location = new Point(0, 0);
+        ScoreBoardPixelBox.Size = new Size(ClientSize.Width, ClientSize.Height);
         TopMost = Program.ProgramConfig.AlwaysOnTop;
         BackColor = Color.FromArgb(255, 222, 216, 149);
 

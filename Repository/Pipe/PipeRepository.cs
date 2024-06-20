@@ -67,8 +67,12 @@ public sealed class PipeRepository : IPipeRepository
             maxPipeTopHeight = _lastGapY + Program.GameplayConfig.PipeGapShiftMax;
         }
 
-        minPipeTopHeight = Math.Clamp(minPipeTopHeight, _pipeScreenDistanceMin, _screenHeight - gap - _pipeScreenDistanceMin * 2);
-        maxPipeTopHeight = Math.Clamp(maxPipeTopHeight, _pipeScreenDistanceMin, _screenHeight - gap - _pipeScreenDistanceMin * 2);
+        var pipeScreenDistanceMax = _screenHeight - gap - _pipeScreenDistanceMin * 2;
+        if (_pipeScreenDistanceMin > pipeScreenDistanceMax)
+            pipeScreenDistanceMax = _pipeScreenDistanceMin;
+
+        minPipeTopHeight = Math.Clamp(minPipeTopHeight, _pipeScreenDistanceMin, pipeScreenDistanceMax);
+        maxPipeTopHeight = Math.Clamp(maxPipeTopHeight, _pipeScreenDistanceMin, pipeScreenDistanceMax);
 
         return _random.Next(minPipeTopHeight, maxPipeTopHeight);
     }

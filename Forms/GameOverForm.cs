@@ -8,6 +8,8 @@ public sealed partial class GameOverForm : Form
     {
         InitializeComponent();
 
+        GameOverPixelBox.Location = new Point(0, 0);
+        GameOverPixelBox.Size = new Size(ClientSize.Width, ClientSize.Height);
         TopMost = Program.ProgramConfig.AlwaysOnTop;
         BackColor = Color.FromArgb(255, 234, 252, 219);
     }

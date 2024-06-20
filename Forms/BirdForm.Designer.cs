@@ -53,8 +53,8 @@ sealed partial class BirdForm
         // 
         // BirdForm
         // 
-        AutoScaleDimensions = new SizeF(7F, 15F);
-        AutoScaleMode = AutoScaleMode.Font;
+        AutoScaleDimensions = new SizeF(96F, 96F);
+        AutoScaleMode = AutoScaleMode.Dpi;
         ClientSize = new Size(120, 86);
         Controls.Add(BirdPixelBox);
         DoubleBuffered = true;

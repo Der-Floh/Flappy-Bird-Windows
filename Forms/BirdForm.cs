@@ -34,6 +34,8 @@ public sealed partial class BirdForm : Form
 
         InitializeComponent();
 
+        BirdPixelBox.Location = new Point(0, 0);
+        BirdPixelBox.Size = new Size(ClientSize.Width, ClientSize.Height);
         TopMost = Program.ProgramConfig.AlwaysOnTop;
 
         Icon = Properties.Resources.ResourceManager.GetObject(iconFileName) as Icon;

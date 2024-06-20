@@ -37,8 +37,8 @@ public sealed partial class GameForm : Form
         _screenWidth = Screen.PrimaryScreen!.Bounds.Width;
         _screenHeight = Screen.PrimaryScreen!.Bounds.Height;
 
-        _birdPreviewYTop = (int)(_screenHeight / 3.3 + 125);
-        _birdPreviewYBottom = _screenHeight / 2 - 125;
+        _birdPreviewYTop = _screenHeight / 2 - 125 / 2;
+        _birdPreviewYBottom = _screenHeight / 2 - 125 / 3;
 
         _birdSpawnHeight = Program.GameplayConfig.TapToStart ? _birdPreviewYTop : 0;
 

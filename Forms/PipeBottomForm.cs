@@ -6,6 +6,10 @@ public sealed partial class PipeBottomForm : Form
     {
         InitializeComponent();
 
+        PipeTopPixelBox.Location = new Point(0, 0);
+        PipeTopPixelBox.Size = new Size(ClientSize.Width, ClientSize.Width);
+        PipeMiddlePixelBox.Location = new Point(0, PipeTopPixelBox.Height);
+        PipeMiddlePixelBox.Size = new Size(ClientSize.Width, ClientSize.Height - PipeTopPixelBox.Height);
         TopMost = Program.ProgramConfig.AlwaysOnTop;
     }
 

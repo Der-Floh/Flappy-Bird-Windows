@@ -9,6 +9,8 @@ public sealed partial class ScoreForm : Form
     {
         InitializeComponent();
 
+        ScoreLabel.Location = new Point(0, 0);
+        ScoreLabel.Size = new Size(ClientSize.Width, ClientSize.Height);
         TopMost = Program.ProgramConfig.AlwaysOnTop;
 
         ScoreLabel.Font = new Font(Program.Fonts.Families[0], ScoreLabel.Font.Size);
