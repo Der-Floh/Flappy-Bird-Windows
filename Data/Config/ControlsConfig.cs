@@ -6,6 +6,7 @@ public sealed class ControlsConfig
     public Keys Player2 { get; private set; } = Keys.Up;
     public Keys Player3 { get; private set; } = Keys.NumPad8;
     public Keys GameOver { get; private set; } = Keys.Escape;
+    public Keys Pause { get; private set; } = Keys.P;
 
     public string Player1Key { get => _player1Key; set { _player1Key = value; Player1 = (Keys)Enum.Parse(typeof(Keys), value, true); } }
     private string _player1Key = "Space";
@@ -15,4 +16,6 @@ public sealed class ControlsConfig
     private string _player3Key = "NumPad8";
     public string GameOverKey { get => _gameOverKey; set { _gameOverKey = value; GameOver = (Keys)Enum.Parse(typeof(Keys), value, true); } }
     private string _gameOverKey = "Escape";
+    public string PauseKey { get => _pauseKey; set { _pauseKey = value; Pause = (Keys)Enum.Parse(typeof(Keys), value, true); } }
+    private string _pauseKey = "P";
 }

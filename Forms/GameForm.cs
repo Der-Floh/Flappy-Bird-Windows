@@ -20,6 +20,8 @@ public sealed partial class GameForm : Form
     private int _scorerValue;
     public bool IsBirdPreviewMode { get => _isBirdPreviewMode; set { _isBirdPreviewMode = value; BirdMovePreviewTimer.Enabled = value; } }
     private bool _isBirdPreviewMode = true;
+    public bool Paused { get => _paused; set { _paused = value; if (value) Pause(); else Resume(); } }
+    private bool _paused;
 
     private readonly IPipeManagerService _pipeManagerService;
     private readonly IPipeRepository _pipeRepository;
@@ -68,10 +70,12 @@ public sealed partial class GameForm : Form
         _birdManagerService.GameOver += (_, _) => GameOver();
 
         ScoreForm = new ScoreForm();
+        ProcessModelId.SetCurrentProcessExplicitAppUserModelID(Guid.NewGuid().ToString());
         ScoreForm.Show();
 
         TapToStartForm = new TapToStartForm();
 
+        Task.Run(GlobalKeyChecker);
         Task.Run(CollisionChecker);
 
         Reset();
@@ -98,8 +102,10 @@ public sealed partial class GameForm : Form
         RestartButtonForm.Hide();
         CloseButtonForm.Hide();
         _pipeRepository.KillAll();
+        _paused = false;
 
         ScoreValue = 0;
+        ProcessModelId.SetCurrentProcessExplicitAppUserModelID(Guid.NewGuid().ToString());
         ScoreForm.Show();
 
         IsGameOver = false;
@@ -117,6 +123,24 @@ public sealed partial class GameForm : Form
         {
             Start();
         }
+    }
+
+    public void Pause()
+    {
+        BirdMoveTimer.Enabled = false;
+        PipeMoveTimer.Enabled = false;
+        PipeSpawnTimer.Enabled = false;
+        _birdManagerService.ControlsEnabled = false;
+        _paused = true;
+    }
+
+    public void Resume()
+    {
+        BirdMoveTimer.Enabled = true;
+        PipeMoveTimer.Enabled = true;
+        PipeSpawnTimer.Enabled = true;
+        _birdManagerService.ControlsEnabled = true;
+        _paused = false;
     }
 
     public void GameOver()
@@ -139,7 +163,7 @@ public sealed partial class GameForm : Form
             ShowGameOver();
     }
 
-    public void ShowGameOver()
+    private void ShowGameOver()
     {
         ScoreBoardForm.Location = new Point(_screenWidth / 2 - ScoreBoardForm.Width / 2, _screenHeight / 2 - ScoreBoardForm.Height / 2);
         GameOverForm.Location = new Point(_screenWidth / 2 - GameOverForm.Width / 2, ScoreBoardForm.Location.Y - GameOverForm.Height - 20);
@@ -158,7 +182,7 @@ public sealed partial class GameForm : Form
         CloseButtonForm.Show();
     }
 
-    public void CheckCollision()
+    private void CheckCollision()
     {
         try
         {
@@ -172,6 +196,35 @@ public sealed partial class GameForm : Form
             }
         }
         catch { }
+    }
+
+    private async Task GlobalKeyChecker()
+    {
+        while (true)
+        {
+            if (Keyboard.IsKeyDown(Program.ControlsConfig.GameOver))
+            {
+                Invoke(new Action(_birdRepository.KillAll));
+                await Task.Delay(200);
+            }
+            if (Keyboard.IsKeyDown(Program.ControlsConfig.Pause))
+            {
+                Invoke(new Action(() => Paused = !Paused));
+                await Task.Delay(200);
+            }
+            await Task.Delay(10);
+        }
+    }
+
+    private void CheckControlKeys()
+    {
+        _birdManagerService.CheckKeyPresses();
+        if (Keyboard.IsKeyDown(Program.ControlsConfig.Player1) && !_birdRepository.Birds.ContainsKey(Color.Yellow))
+            _birdManagerService.NewBird(Color.Yellow);
+        if (Keyboard.IsKeyDown(Program.ControlsConfig.Player2) && !_birdRepository.Birds.ContainsKey(Color.Blue))
+            _birdManagerService.NewBird(Color.Blue);
+        if (Keyboard.IsKeyDown(Program.ControlsConfig.Player3) && !_birdRepository.Birds.ContainsKey(Color.Red))
+            _birdManagerService.NewBird(Color.Red);
     }
 
     private static void BirdCollided(BirdForm bird)
@@ -209,19 +262,8 @@ public sealed partial class GameForm : Form
         }
 
         _birdManagerService.MoveBirds();
-
         if (!IsGameOver)
-        {
-            _birdManagerService.CheckKeyPresses();
-            if (Keyboard.IsKeyDown(Program.ControlsConfig.GameOver))
-                _birdRepository.KillAll();
-            if (Keyboard.IsKeyDown(Program.ControlsConfig.Player1) && !_birdRepository.Birds.ContainsKey(Color.Yellow))
-                _birdManagerService.NewBird(Color.Yellow);
-            if (Keyboard.IsKeyDown(Program.ControlsConfig.Player2) && !_birdRepository.Birds.ContainsKey(Color.Blue))
-                _birdManagerService.NewBird(Color.Blue);
-            if (Keyboard.IsKeyDown(Program.ControlsConfig.Player3) && !_birdRepository.Birds.ContainsKey(Color.Red))
-                _birdManagerService.NewBird(Color.Red);
-        }
+            CheckControlKeys();
     }
 
     private void BirdMovePreviewTimer_Tick(object sender, EventArgs e)
