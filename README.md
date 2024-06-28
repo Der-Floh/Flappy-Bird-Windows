@@ -8,6 +8,7 @@ Hey its Flappy Bird but with Windows... on Windows
 - Player 2: Up Arrow
 - Player 3: NumPad 8
 - GameOver: Esc
+- Pause: P
 
 Feel free to drag the windows around. Shrink and grow. It just works.
 
@@ -20,6 +21,7 @@ player1key=space
 player2key=up
 player3key=numpad8
 gameoverkey=escape
+pausekey=p
 
 [gameplay]
 birdgravity=1
