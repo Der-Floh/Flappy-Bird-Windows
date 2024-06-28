@@ -1,6 +1,8 @@
 # Flappy Bird Windows
 Hey its Flappy Bird but with Windows... on Windows
 
+![game-screenshot](https://github.com/Der-Floh/Flappy-Bird-Windows/blob/master/Resources/screenshot-game.png?raw=true)
+
 ## Controls
 - Player 1: Space
 - Player 2: Up Arrow
