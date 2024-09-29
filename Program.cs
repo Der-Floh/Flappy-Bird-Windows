@@ -29,10 +29,23 @@ internal static class Program
 
         Fonts.AddFontFile(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "font.ttf"));
 
-        IConfiguration config = new ConfigurationBuilder().AddIniFile("config.ini").Build();
-        config.GetSection("controls").Bind(ControlsConfig);
-        config.GetSection("gameplay").Bind(GameplayConfig);
-        config.GetSection("program").Bind(ProgramConfig);
+        IConfiguration? config = null;
+
+        try
+        {
+            config = new ConfigurationBuilder().AddIniFile("config.ini").Build();
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show($"Could not find config file.{Environment.NewLine}{Environment.NewLine}{ex.Message}", "Config Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+
+        if (config is not null)
+        {
+            TryLoadConfigSection(config, "controls", ControlsConfig);
+            TryLoadConfigSection(config, "gameplay", GameplayConfig);
+            TryLoadConfigSection(config, "program", ProgramConfig);
+        }
 
         ApplicationConfiguration.Initialize();
         Application.Run(new GameForm());
@@ -47,5 +60,19 @@ internal static class Program
         serviceCollection.AddSingleton<IPipeManagerService, PipeManagerService>();
         serviceCollection.AddTransient<IPipePair, PipePair>();
         Services = serviceCollection.BuildServiceProvider();
+    }
+
+    private static bool TryLoadConfigSection(IConfiguration config, string sectionName, object bindObject)
+    {
+        try
+        {
+            config.GetSection(sectionName).Bind(bindObject);
+            return true;
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show($"Could not load config section '{sectionName}'. Using default config instead.{Environment.NewLine}{Environment.NewLine}{ex.Message}", "Config Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            return false;
+        }
     }
 }
