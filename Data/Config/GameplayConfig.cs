@@ -2,9 +2,9 @@
 
 public sealed class GameplayConfig
 {
-    public int BirdGravity { get; set; } = 1;
-    public int BirdFlapPower { get; set; } = 30;
-    public int BirdMaxFallSpeed { get; set; } = 30;
+    public float BirdGravity { get; set; } = 1;
+    public float BirdFlapPower { get; set; } = 30;
+    public float BirdMaxFallSpeed { get; set; } = 30;
     public int PipeScreenDistanceMin { get; set; } = 157;
     public int PipeGapMin { get; set; } = 450;
     public int PipeGapMax { get; set; } = 600;

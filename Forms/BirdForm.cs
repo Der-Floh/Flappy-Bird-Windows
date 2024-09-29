@@ -8,8 +8,8 @@ public sealed partial class BirdForm : Form
     public BirdAnimationState AnimationState { get; set; }
     public Color Color { get; set; }
 
-    public int Velocity_Y { get; set; }
-    public int UpwardVelocityDecay { get; set; } = 2;
+    public float Velocity_Y { get; set; }
+    public float UpwardVelocityDecay { get; set; } = Program.GameplayConfig.BirdGravity * 1.8f;
 
     private readonly Bitmap? _upFlapImage;
     private readonly Bitmap? _midFlapImage;
@@ -54,7 +54,7 @@ public sealed partial class BirdForm : Form
         if (Velocity_Y > Program.GameplayConfig.BirdMaxFallSpeed)
             Velocity_Y = Program.GameplayConfig.BirdMaxFallSpeed;
 
-        Location = new Point(Location.X, Math.Max(Location.Y + Velocity_Y, 0));
+        Location = new Point(Location.X, (int)Math.Round(Math.Max(Location.Y + Velocity_Y, 0)));
 
         if (Location.Y > Screen.PrimaryScreen!.Bounds.Height)
             KillBird();
@@ -71,7 +71,7 @@ public sealed partial class BirdForm : Form
     public void FlapBird()
     {
         if (ControlsEnabled)
-            Velocity_Y = -Program.GameplayConfig.BirdFlapPower;
+            Velocity_Y = -(Program.GameplayConfig.BirdFlapPower * (Program.GameplayConfig.BirdGravity / (UpwardVelocityDecay / 2)));
     }
 
     public void DisposeImages()
