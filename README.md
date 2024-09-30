@@ -53,3 +53,4 @@ AlwaysOnTop=true            ; Whether game windows should always be on top of ev
 SaveScore=true              ; Whether the game score should be saved (true or false)
 SavedScoresMax=1000         ; The maximum amount of saved scores before old ones get deleted (any integer value)
 ```
+*Yes 0 or negative numbers work ... in theory...*
