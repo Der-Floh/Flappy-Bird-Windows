@@ -19,36 +19,37 @@ Feel free to drag the windows around. Shrink and grow. It just works.
    - **For ZIP Portable:** Extract the contents of the zip file using the program of your choice to anywhere you want. In the extracted Folder execute the `Flappy_Bird_Windows.exe` file to start the Game
 
 ## Configuration
-There is a config file called `config.ini` in the root folder.
+There is a config file called `config.ini` in the root folder. But you can also change the config during the game start screen.
+![options-screenshot](https://github.com/Der-Floh/Flappy-Bird-Windows/blob/master/Resources/screenshot-options.png?raw=true)
 
 ```ini
 [controls]
-player1key=space
-player2key=up
-player3key=numpad8
-gameoverkey=escape
-pausekey=p
+Player1=Space               ; Player 1 Flap Key (any key)
+Player2=Up                  ; Player 2 Flap Key (any key)
+Player3=NumPad8             ; Player 3 Flap Key (any key)
+GameOver=Escape             ; Game Over Key (any key)
+Pause=P                     ; Pause Key (any key)
 
 [gameplay]
-birdgravity=1
-birdflappower=30
-birdmaxfallspeed=30
-pipescreendistancemin=157
-pipegapmin=450
-pipegapmax=600
-pipegapshiftmin=100
-pipegapshiftmax=300
-pipemovespeed=5
-pipespawnoffset=0
-pipedespawnoffset=0
-pipespawndelay=3000
-scoremultiplier=1
-instantrestart=false
-closeonloose=false
-taptostart=true
+BirdGravity=1               ; Gravity / Fall speed increase in pixels per 10 ms (any decimal value)
+BirdFlapPower=30            ; Flap power in pixels (any decimal value)
+BirdMaxFallSpeed=30         ; Max fall speed in pixels per 10 ms (any decimal value)
+PipeScreenDistanceMin=157   ; The minimum distance in pixels the top of a pipe has to the screen = minimum pipe length (any integer value)
+PipeGapMin=450              ; The minimum distance in pixels of the vertical gap between 2 pipes (any integer value)
+PipeGapMax=600              ; The maximum distance in pixels of the vertical gap between 2 pipes (any integer value)
+PipeGapShiftMin=100         ; The minium gap position change in pixels that the next pipe pair can have in comparison to the one before (any integer value)
+PipeGapShiftMax=300         ; The maximum gap position change in pixels that the next pipe pair can have in comparison to the one before (any integer value)
+PipeMoveSpeed=5             ; The move speed of all pipes in pixels per 10 ms (any integer value)
+PipeSpawnOffset=0           ; The x offset in pixels of the spawned pipes related to the screen border (any integer value)
+PipeDespawnOffset=0         ; The x offset in pixels of the despawned pipes related to the screen border (any integer value)
+PipeSpawnDelay=3000         ; The delay in ms between each pipe pair spawn (any integer value)
+ScoreMultiplier=1           ; The score multiplier (any integer value)
+InstantRestart=false        ; Whether the game should instantly restart uppon game over (true or false)
+CloseOnLoose=false          ; Whether the game should close itself uppon game over (true or false)
+TapToStart=true             ; Whether the game should show the TapToStart window (true or false)
 
 [program]
-alwaysontop=true
-savescore=true
-savedscoresmax=1000
+AlwaysOnTop=true            ; Whether game windows should always be on top of every other windows window (true or false)
+SaveScore=true              ; Whether the game score should be saved (true or false)
+SavedScoresMax=1000         ; The maximum amount of saved scores before old ones get deleted (any integer value)
 ```
