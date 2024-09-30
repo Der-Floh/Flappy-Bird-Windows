@@ -20,6 +20,7 @@ Feel free to drag the windows around. Shrink and grow. It just works.
 
 ## Configuration
 There is a config file called `config.ini` in the root folder. But you can also change the config during the game start screen.
+
 ![options-screenshot](https://github.com/Der-Floh/Flappy-Bird-Windows/blob/master/Resources/screenshot-options.png?raw=true)
 
 ```ini
