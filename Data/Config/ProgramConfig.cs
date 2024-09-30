@@ -1,5 +1,6 @@
 ﻿namespace Flappy_Bird_Windows.Data.Config;
 
+[ConfigSection("program")]
 public sealed class ProgramConfig
 {
     public bool AlwaysOnTop { get; set; } = true;

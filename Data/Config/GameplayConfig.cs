@@ -1,5 +1,6 @@
 ﻿namespace Flappy_Bird_Windows.Data.Config;
 
+[ConfigSection("gameplay")]
 public sealed class GameplayConfig
 {
     public float BirdGravity { get; set; } = 1;

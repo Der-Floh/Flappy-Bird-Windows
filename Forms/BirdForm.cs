@@ -9,7 +9,6 @@ public sealed partial class BirdForm : Form
     public Color Color { get; set; }
 
     public float Velocity_Y { get; set; }
-    public float UpwardVelocityDecay { get; set; } = Program.GameplayConfig.BirdGravity * 1.8f;
 
     private readonly Bitmap? _upFlapImage;
     private readonly Bitmap? _midFlapImage;
@@ -47,7 +46,7 @@ public sealed partial class BirdForm : Form
     public void MoveBird()
     {
         if (Velocity_Y < 0)
-            Velocity_Y += UpwardVelocityDecay;
+            Velocity_Y += Program.GameplayConfig.BirdGravity * 1.8f;
         else
             Velocity_Y += Program.GameplayConfig.BirdGravity;
 
@@ -71,7 +70,7 @@ public sealed partial class BirdForm : Form
     public void FlapBird()
     {
         if (ControlsEnabled)
-            Velocity_Y = -(Program.GameplayConfig.BirdFlapPower * (Program.GameplayConfig.BirdGravity / (UpwardVelocityDecay / 2)));
+            Velocity_Y = -(Program.GameplayConfig.BirdFlapPower * (Program.GameplayConfig.BirdGravity / (Program.GameplayConfig.BirdGravity * 1.8f / 2)));
     }
 
     public void DisposeImages()

@@ -9,6 +9,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System.Diagnostics;
 using System.Drawing.Text;
+using System.Globalization;
+using System.Reflection;
 
 namespace Flappy_Bird_Windows;
 
@@ -29,23 +31,7 @@ internal static class Program
 
         Fonts.AddFontFile(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "font.ttf"));
 
-        IConfiguration? config = null;
-
-        try
-        {
-            config = new ConfigurationBuilder().AddIniFile("config.ini").Build();
-        }
-        catch (Exception ex)
-        {
-            MessageBox.Show($"Could not find config file.{Environment.NewLine}{Environment.NewLine}{ex.Message}", "Config Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-        }
-
-        if (config is not null)
-        {
-            TryLoadConfigSection(config, "controls", ControlsConfig);
-            TryLoadConfigSection(config, "gameplay", GameplayConfig);
-            TryLoadConfigSection(config, "program", ProgramConfig);
-        }
+        LoadConfig();
 
         ApplicationConfiguration.Initialize();
         Application.Run(new GameForm());
@@ -62,17 +48,90 @@ internal static class Program
         Services = serviceCollection.BuildServiceProvider();
     }
 
-    private static bool TryLoadConfigSection(IConfiguration config, string sectionName, object bindObject)
+    public static void LoadConfig()
     {
+        var configFile = "config.ini";
+        IConfiguration? config = null;
         try
         {
-            config.GetSection(sectionName).Bind(bindObject);
-            return true;
+            config = new ConfigurationBuilder().AddIniFile(configFile).Build();
         }
         catch (Exception ex)
         {
-            MessageBox.Show($"Could not load config section '{sectionName}'. Using default config instead.{Environment.NewLine}{Environment.NewLine}{ex.Message}", "Config Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            return false;
+            MessageBox.Show($"Could not find config file.{Environment.NewLine}{Environment.NewLine}{ex.Message}", "Config Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            return;
         }
+
+        var configProperties = typeof(Program).GetProperties(BindingFlags.Static | BindingFlags.Public)
+            .Where(p => p.PropertyType.GetCustomAttributes(typeof(ConfigSectionAttribute), true).Length > 0);
+
+        foreach (var property in configProperties)
+        {
+            var configObject = property.GetValue(null);
+            var configType = property.PropertyType;
+            var sectionAttr = (ConfigSectionAttribute)configType.GetCustomAttributes(typeof(ConfigSectionAttribute), true)[0];
+            var sectionName = sectionAttr.SectionName;
+
+            try
+            {
+                config.GetSection(sectionName).Bind(configObject);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Could not load config section '{sectionName}'. Using default config instead.{Environment.NewLine}{Environment.NewLine}{ex.Message}", "Config Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+    }
+
+    public static void SaveConfig()
+    {
+        var configFile = "config.ini";
+        using var writer = new StreamWriter(configFile);
+        var configProperties = typeof(Program).GetProperties(BindingFlags.Static | BindingFlags.Public)
+            .Where(p => p.PropertyType.GetCustomAttributes(typeof(ConfigSectionAttribute), true).Length > 0);
+
+        foreach (var property in configProperties)
+        {
+            var configObject = property.GetValue(null);
+            var configType = property.PropertyType;
+            var sectionAttr = (ConfigSectionAttribute)configType.GetCustomAttributes(typeof(ConfigSectionAttribute), true)[0];
+            var sectionName = sectionAttr.SectionName;
+
+            writer.WriteLine($"[{sectionName}]");
+
+            var properties = configType.GetProperties();
+
+            foreach (var prop in properties)
+            {
+                var propName = prop.Name;
+                var propValue = prop.GetValue(configObject);
+
+                writer.WriteLine($"{propName}={ConvertObjectToString(propValue)}");
+            }
+
+            writer.WriteLine();
+        }
+    }
+
+    public static void ResetConfig()
+    {
+        ControlsConfig = new ControlsConfig();
+        GameplayConfig = new GameplayConfig();
+        ProgramConfig = new ProgramConfig();
+        SaveConfig();
+    }
+
+    private static string? ConvertObjectToString(object? obj)
+    {
+        if (obj is bool)
+        {
+            return obj.ToString()?.ToLower();
+        }
+        else if (obj is float or double or decimal)
+        {
+            return Convert.ToString(obj, CultureInfo.InvariantCulture);
+        }
+
+        return obj?.ToString();
     }
 }

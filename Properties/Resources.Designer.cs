@@ -111,6 +111,16 @@ namespace Flappy_Bird_Windows.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap button_close_image {
+            get {
+                object obj = ResourceManager.GetObject("button_close_image", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
         /// </summary>
         internal static System.Drawing.Icon button_icon {
@@ -126,6 +136,16 @@ namespace Flappy_Bird_Windows.Properties {
         internal static System.Drawing.Bitmap button_restart {
             get {
                 object obj = ResourceManager.GetObject("button_restart", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap button_settings_image {
+            get {
+                object obj = ResourceManager.GetObject("button_settings_image", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

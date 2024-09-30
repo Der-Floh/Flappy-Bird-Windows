@@ -33,6 +33,7 @@ public sealed partial class GameForm : Form
     private readonly int _birdPreviewYBottom;
     private readonly int _birdSpawnHeight;
     private int _birdPreviewDirectionValue = 1;
+    private bool _isOptionsOpen = false;
 
     public GameForm()
     {
@@ -74,6 +75,8 @@ public sealed partial class GameForm : Form
         ScoreForm.Show();
 
         TapToStartForm = new TapToStartForm();
+        TapToStartForm.CloseMenuItem.Click += (_, _) => Close();
+        TapToStartForm.OptionsMenuItem.Click += OptionsMenuItem_Click;
 
         Task.Run(GlobalKeyChecker);
         Task.Run(CollisionChecker);
@@ -130,6 +133,7 @@ public sealed partial class GameForm : Form
         BirdMoveTimer.Enabled = false;
         PipeMoveTimer.Enabled = false;
         PipeSpawnTimer.Enabled = false;
+        BirdMovePreviewTimer.Enabled = false;
         _birdManagerService.ControlsEnabled = false;
         _paused = true;
     }
@@ -138,7 +142,9 @@ public sealed partial class GameForm : Form
     {
         BirdMoveTimer.Enabled = true;
         PipeMoveTimer.Enabled = true;
-        PipeSpawnTimer.Enabled = true;
+        if (!IsBirdPreviewMode)
+            PipeSpawnTimer.Enabled = true;
+        BirdMovePreviewTimer.Enabled = true;
         _birdManagerService.ControlsEnabled = true;
         _paused = false;
     }
@@ -249,6 +255,21 @@ public sealed partial class GameForm : Form
         }
     }
 
+    private void OptionsMenuItem_Click(object? sender, EventArgs e)
+    {
+        _isOptionsOpen = true;
+        Pause();
+        ProcessModelId.SetCurrentProcessExplicitAppUserModelID(Guid.NewGuid().ToString());
+        var configForm = new ConfigForm([Program.ProgramConfig, Program.GameplayConfig, Program.ControlsConfig]);
+        configForm.FormClosed += (_, _) =>
+        {
+            _isOptionsOpen = false;
+            PipeSpawnTimer.Interval = Program.GameplayConfig.PipeSpawnDelay;
+            Resume();
+        };
+        configForm.ShowDialog();
+    }
+
     private void BirdMoveTimer_Tick(object sender, EventArgs e)
     {
         if (IsBirdPreviewMode)
@@ -276,7 +297,6 @@ public sealed partial class GameForm : Form
             _birdPreviewDirectionValue = -_birdPreviewDirectionValue;
         else if (_birdPreviewDirectionValue < 0 && bird.Location.Y <= _birdPreviewYTop)
             _birdPreviewDirectionValue = -_birdPreviewDirectionValue;
-
     }
 
     private void PipeSpawnTimer_Tick(object sender, EventArgs e)
