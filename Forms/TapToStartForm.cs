@@ -6,8 +6,8 @@ public sealed partial class TapToStartForm : Form
     {
         InitializeComponent();
 
-        TopToStartPixelBox.Location = new Point(0, 24);
-        TopToStartPixelBox.Size = new Size(ClientSize.Width, ClientSize.Height - 24);
+        TopToStartPixelBox.Location = new Point(0, MainMenuStrip.ClientSize.Height);
+        TopToStartPixelBox.Size = new Size(ClientSize.Width, ClientSize.Height - MainMenuStrip.ClientSize.Height);
         TopMost = Program.ProgramConfig.AlwaysOnTop;
     }
 

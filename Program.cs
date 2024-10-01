@@ -7,6 +7,7 @@ using Flappy_Bird_Windows.Service.BirdManager;
 using Flappy_Bird_Windows.Service.PipeManager;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.Drawing.Text;
 using System.Globalization;
@@ -83,9 +84,49 @@ internal static class Program
         }
     }
 
-    public static void SaveConfig()
+    public static bool SaveConfig()
     {
-        var configFile = "config.ini";
+        try
+        {
+            WriteConfigToFile("config.ini");
+            return true;
+        }
+        catch (UnauthorizedAccessException)
+        {
+            var tempFile = Path.GetTempFileName();
+            WriteConfigToFile(tempFile);
+
+            var startInfo = new ProcessStartInfo
+            {
+                FileName = "cmd.exe",
+                Arguments = $"/c move /Y \"{tempFile}\" \"{Path.GetFullPath("config.ini")}\"",
+                Verb = "runas",
+                UseShellExecute = true,
+                CreateNoWindow = true
+            };
+
+            try
+            {
+                var process = Process.Start(startInfo);
+                process?.WaitForExit();
+
+                if (process?.ExitCode != 0)
+                {
+                    MessageBox.Show("Could not save config. Please try again later.", "Save Config", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return false;
+                }
+            }
+            catch (Win32Exception)
+            {
+                MessageBox.Show("Aborted.", "Save Config", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+            return true;
+        }
+    }
+
+    private static void WriteConfigToFile(string configFile)
+    {
         using var writer = new StreamWriter(configFile);
         var configProperties = typeof(Program).GetProperties(BindingFlags.Static | BindingFlags.Public)
             .Where(p => p.PropertyType.GetCustomAttributes(typeof(ConfigSectionAttribute), true).Length > 0);

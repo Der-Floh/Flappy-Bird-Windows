@@ -239,8 +239,7 @@ public partial class ConfigForm : Form
 
     private void SaveButton_Click(object sender, EventArgs e)
     {
-        Program.SaveConfig();
-        UnsavedChanges = false;
+        UnsavedChanges = !Program.SaveConfig();
     }
 
     private void ResetButton_Click(object sender, EventArgs e)
@@ -256,8 +255,7 @@ public partial class ConfigForm : Form
     {
         if (UnsavedChanges && MessageBox.Show("You have unsaved changes. Do you want to save the changes?", "Flappy Bird Config", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
         {
-            Program.SaveConfig();
-            UnsavedChanges = false;
+            UnsavedChanges = !Program.SaveConfig();
         }
         else if (UnsavedChanges)
         {

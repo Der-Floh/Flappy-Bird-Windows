@@ -29,24 +29,13 @@ sealed partial class TapToStartForm
     private void InitializeComponent()
     {
         var resources = new System.ComponentModel.ComponentResourceManager(typeof(TapToStartForm));
-        TopToStartPixelBox = new CustomControls.PixelBox();
         MainMenuStrip = new MenuStrip();
         CloseMenuItem = new ToolStripMenuItem();
         OptionsMenuItem = new ToolStripMenuItem();
-        ((System.ComponentModel.ISupportInitialize)TopToStartPixelBox).BeginInit();
+        TopToStartPixelBox = new CustomControls.PixelBox();
         MainMenuStrip.SuspendLayout();
+        ((System.ComponentModel.ISupportInitialize)TopToStartPixelBox).BeginInit();
         SuspendLayout();
-        // 
-        // TopToStartPixelBox
-        // 
-        TopToStartPixelBox.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-        TopToStartPixelBox.Image = Properties.Resources.tap_to_start;
-        TopToStartPixelBox.Location = new Point(0, 27);
-        TopToStartPixelBox.Name = "TopToStartPixelBox";
-        TopToStartPixelBox.Size = new Size(336, 313);
-        TopToStartPixelBox.SizeMode = PictureBoxSizeMode.StretchImage;
-        TopToStartPixelBox.TabIndex = 0;
-        TopToStartPixelBox.TabStop = false;
         // 
         // MainMenuStrip
         // 
@@ -71,30 +60,42 @@ sealed partial class TapToStartForm
         OptionsMenuItem.Size = new Size(77, 20);
         OptionsMenuItem.Text = "Options";
         // 
+        // TopToStartPixelBox
+        // 
+        TopToStartPixelBox.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+        TopToStartPixelBox.Image = Properties.Resources.tap_to_start;
+        TopToStartPixelBox.Location = new Point(12, 27);
+        TopToStartPixelBox.Name = "TopToStartPixelBox";
+        TopToStartPixelBox.Size = new Size(313, 301);
+        TopToStartPixelBox.SizeMode = PictureBoxSizeMode.StretchImage;
+        TopToStartPixelBox.TabIndex = 2;
+        TopToStartPixelBox.TabStop = false;
+        // 
         // TapToStartForm
         // 
         AutoScaleDimensions = new SizeF(96F, 96F);
         AutoScaleMode = AutoScaleMode.Dpi;
+        BackgroundImageLayout = ImageLayout.Stretch;
         ClientSize = new Size(337, 340);
         Controls.Add(TopToStartPixelBox);
         Controls.Add(MainMenuStrip);
+        DoubleBuffered = true;
         Icon = (Icon)resources.GetObject("$this.Icon");
         MaximizeBox = false;
         MinimizeBox = false;
         Name = "TapToStartForm";
         StartPosition = FormStartPosition.Manual;
         FormClosing += TapToStartForm_FormClosing;
-        ((System.ComponentModel.ISupportInitialize)TopToStartPixelBox).EndInit();
         MainMenuStrip.ResumeLayout(false);
         MainMenuStrip.PerformLayout();
+        ((System.ComponentModel.ISupportInitialize)TopToStartPixelBox).EndInit();
         ResumeLayout(false);
         PerformLayout();
     }
 
     #endregion
-
-    public CustomControls.PixelBox TopToStartPixelBox;
     public MenuStrip MainMenuStrip;
     public ToolStripMenuItem OptionsMenuItem;
     public ToolStripMenuItem CloseMenuItem;
+    private CustomControls.PixelBox TopToStartPixelBox;
 }

@@ -8,6 +8,7 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <ApplicationIcon>Resources\yellowbird-icon.ico</ApplicationIcon>
     <SatelliteResourceLanguages>en</SatelliteResourceLanguages>
+    <ForceDesignerDpiUnaware>true</ForceDesignerDpiUnaware>
   </PropertyGroup>
 
   <ItemGroup>
