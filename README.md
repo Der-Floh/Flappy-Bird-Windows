@@ -32,7 +32,7 @@ GameOver=Escape             ; Game Over Key (any key)
 Pause=P                     ; Pause Key (any key)
 
 [gameplay]
-BirdGravity=1               ; Gravity / Fall speed increase in pixels per 10 ms (any decimal value)
+BirdGravity=1               ; Gravity / Fall speed as increase in pixels per 10 ms (any decimal value)
 BirdFlapPower=30            ; Flap power in pixels (any decimal value)
 BirdMaxFallSpeed=30         ; Max fall speed in pixels per 10 ms (any decimal value)
 PipeScreenDistanceMin=157   ; The minimum distance in pixels the top of a pipe has to the screen = minimum pipe length (any integer value)
