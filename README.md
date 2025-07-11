@@ -55,3 +55,7 @@ SaveScore=true              ; Whether the game score should be saved (true or fa
 SavedScoresMax=1000         ; The maximum amount of saved scores before old ones get deleted (any integer value)
 ```
 *Yes 0 or negative numbers work ... in theory...*
+
+<br>
+
+[!["Buy me a Floppy Disk"](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/der_floh)
