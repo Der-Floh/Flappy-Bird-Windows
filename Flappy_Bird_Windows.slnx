@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="CommonShims/CommonShims.csproj" Id="f3ace59a-dbbe-486c-b02c-338cd54fbcad" />
+  <Project Path="Flappy_Bird_Windows/Flappy_Bird_Windows.csproj" />
+</Solution>
