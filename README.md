@@ -1,7 +1,7 @@
 # Flappy Bird Windows
 Hey its Flappy Bird but with Windows... on Windows
 
-![game-screenshot](https://github.com/Der-Floh/Flappy-Bird-Windows/blob/master/Resources/screenshot-game.png?raw=true)
+![game-screenshot](https://github.com/Der-Floh/Flappy-Bird-Windows/blob/master/Flappy_Bird_Windows/Resources/screenshot-game.png?raw=true)
 
 ## Controls
 - Player 1: Space
@@ -21,7 +21,7 @@ Feel free to drag the windows around. Shrink and grow. It just works.
 ## Configuration
 You can change the config during the game start screen. When you do a `config.ini` file is created next to the game exe.
 
-![options-screenshot](https://github.com/Der-Floh/Flappy-Bird-Windows/blob/master/Resources/screenshot-options.png?raw=true)
+![options-screenshot](https://github.com/Der-Floh/Flappy-Bird-Windows/blob/master/Flappy_Bird_Windows/Resources/screenshot-options.png?raw=true)
 
 ```ini
 [controls]
